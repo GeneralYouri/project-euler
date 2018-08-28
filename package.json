@@ -1,0 +1,30 @@
+{
+    "name": "project-euler",
+    "version": "1.0.0",
+    "description": "My collection of JS-based solutions for various Project Euler challenges",
+    "main": "index.js",
+    "scripts": {
+        "eslint": "eslint src",
+        "test": "jest -w=2"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/GeneralYouri/project-euler.git"
+    },
+    "author": "Youri Bok",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/GeneralYouri/project-euler/issues"
+    },
+    "homepage": "https://github.com/GeneralYouri/project-euler#readme",
+    "dependencies": {
+        "yargs": "^12.0.1"
+    },
+    "devDependencies": {
+        "eslint": "^5.4.0",
+        "eslint-config-airbnb-base": "^13.1.0",
+        "eslint-plugin-import": "^2.14.0",
+        "eslint-plugin-jest": "^21.22.0",
+        "jest": "^23.5.0"
+    }
+}
