@@ -4,13 +4,13 @@ const evenFibonacciGenerator = function* (limit = Number.MAX_SAFE_INTEGER) {
     let n2 = 2;
 
     while (true) {
-        yield n2;
-
-        ([ n1, n2 ] = [ n2, n1 + 4 * n2 ]);
-
         if (n2 > limit) {
             return;
         }
+
+        yield n2;
+
+        ([ n1, n2 ] = [ n2, n1 + 4 * n2 ]);
     }
 };
 
