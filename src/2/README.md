@@ -3,6 +3,8 @@
 To sum all even fibonacci numbers, we need to first start by looking at the full fibonacci sequence.
 It's easy to find that only every third fibonacci number is even, meaning we can skip 2/3rds of the fibonacci numbers.
 
+---
+
 However we can do one better. If you output the first five even fibonacci numbers, you get:
 ```javascript
    2, 8, 34, 144, 610
