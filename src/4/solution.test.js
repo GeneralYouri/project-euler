@@ -5,6 +5,8 @@ test('Provided test cases', () => {
 });
 
 test('Custom test cases', () => {
+    expect(solution('-1')).toBeUndefined();
+    expect(solution('0')).toBeUndefined();
     expect(solution('1')).toBeUndefined();
     expect(solution('4')).toBe(99000099);
     expect(solution('5')).toBe(9966006699);

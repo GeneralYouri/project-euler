@@ -15,7 +15,7 @@ const evenFibonacciGenerator = function* (limit = Number.MAX_SAFE_INTEGER) {
 };
 
 module.exports = (input) => {
-    const limit = Number(input);
+    const limit = Math.floor(Number(input));
 
     const fibonaccis = evenFibonacciGenerator(limit);
     return [...fibonaccis].reduce((acc, fibonacci) => acc + fibonacci, 0);

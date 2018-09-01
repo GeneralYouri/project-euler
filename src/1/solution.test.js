@@ -5,6 +5,9 @@ test('Provided test cases', () => {
 });
 
 test('Custom test cases', () => {
+    expect(solution('-1')).toBe(0);
+    expect(solution('0')).toBe(0);
+    expect(solution('1')).toBe(0);
     expect(solution('4')).toBe(3);
     expect(solution('6')).toBe(8);
     expect(solution('16')).toBe(60);

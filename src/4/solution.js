@@ -1,5 +1,9 @@
 module.exports = (input) => {
-    const digits = Number(input);
+    const digits = Math.floor(Number(input));
+    if (digits <= 1) {
+        return undefined;
+    }
+
     const upperBound = Math.pow(10, digits) - 1;
     const lowerBound = (upperBound + 1) / 10;
     const upper11Mod = Math.floor(upperBound / 11) * 11;

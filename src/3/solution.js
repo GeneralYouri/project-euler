@@ -21,7 +21,10 @@ const primeGenerator = function* () {
 };
 
 module.exports = (input) => {
-    let remaining = Number(input);
+    let remaining = Math.floor(Number(input));
+    if (remaining <= 1) {
+        return undefined;
+    }
 
     let largestPrime = 1;
 
