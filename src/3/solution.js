@@ -1,7 +1,21 @@
 // A low-level primality check that simply iterates all possible dividers
 const isPrime = (n) => {
-    for (let i = 2; i <= Math.sqrt(n); i += 1) {
+    if (n < 2 || n % 2 === 0) {
+        return false;
+    }
+    if (n < 9) {
+        return true;
+    }
+    if (n % 3 === 0) {
+        return false;
+    }
+
+    const sqrt = Math.floor(Math.sqrt(n));
+    for (let i = 5; i <= sqrt; i += 6) {
         if (n % i === 0) {
+            return false;
+        }
+        if (n % (i + 2) === 0) {
             return false;
         }
     }
