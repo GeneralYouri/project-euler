@@ -11,13 +11,13 @@ const isPrime = (n) => {
 
 // An infinite generator for the collection of prime numbers
 const primeGenerator = function* () {
-     yield 2;
+    yield 2;
 
-     for (let candidate = 3; true; candidate += 2) {
+    for (let candidate = 3; true; candidate += 2) {
         if (isPrime(candidate)) {
             yield candidate;
         }
-     }
+    }
 };
 
 module.exports = (input) => {
@@ -30,17 +30,14 @@ module.exports = (input) => {
 
     while (remaining > 1) {
         const primes = primeGenerator();
-        let prime = primes.next();
+        let prime;
 
-        while (!prime.done) {
-            if (remaining % prime.value === 0) {
-                largestPrime = Math.max(largestPrime, prime.value);
-                remaining /= prime.value;
-                break;
-            }
-
+        do {
             prime = primes.next();
-        }
+        } while (remaining % prime.value !== 0);
+
+        largestPrime = Math.max(largestPrime, prime.value);
+        remaining /= prime.value;
     }
 
     return largestPrime;

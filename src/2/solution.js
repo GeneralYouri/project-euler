@@ -10,7 +10,7 @@ const evenFibonacciGenerator = function* (limit = Number.MAX_SAFE_INTEGER) {
 
         yield n2;
 
-        ([ n1, n2 ] = [ n2, n1 + 4 * n2 ]);
+        ([n1, n2] = [n2, n1 + 4 * n2]);
     }
 };
 
