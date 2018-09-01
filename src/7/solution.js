@@ -35,7 +35,7 @@ const primeGenerator = function* () {
 };
 
 module.exports = (input) => {
-    let targetIndex = Math.floor(Number(input));
+    const targetIndex = Math.floor(Number(input));
     if (targetIndex < 1) {
         return undefined;
     }
