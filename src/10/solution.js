@@ -6,7 +6,7 @@ module.exports = (input) => {
     }
 
     const composites = {};
-    for (let index = 3; index < sqrt; index += 2) {
+    for (let index = 3; index <= sqrt; index += 2) {
         if (composites[index]) {
             continue;
         }
