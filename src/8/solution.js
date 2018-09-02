@@ -1,6 +1,6 @@
 module.exports = (input, digitsPerProduct = 13) => {
-    const digits = input.replace(/\r?\n/g, '').split('').map(Number);
-    if (digitsPerProduct <= 0) {
+    const digits = input.replace(/\n/g, '').split('').map(Number);
+    if (digitsPerProduct < 1) {
         return 0;
     }
 
