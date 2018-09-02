@@ -1,12 +1,14 @@
+// TODO: Use yargs Commands
 const { argv } = require('yargs')
     .options({
         problem: {
-            alias: 'p',
-            type: 'number',
-            default: 0,
+            alias: ['p', 'problems'],
+            describe: 'Choose which problem solution(s) to run',
+            array: true,
+            default: [],
         },
         input: {
-            alias: 'i',
+            alias: ['inputs', 'i'],
             implies: 'problem',
             array: true,
             string: true,
@@ -16,15 +18,16 @@ const { argv } = require('yargs')
             type: 'bool',
             default: false,
         },
-    });
+    })
+    .alias({ help: 'h', version: 'v' });
 
 const solutions = require('./src');
 
 module.exports = solutions;
 
 
-const problems = argv.problem ? [argv.problem] : Object.keys(solutions);
-problems.forEach((problem) => {
+const problems = Array.isArray(argv.problem) ? argv.problem : Object.keys(solutions);
+problems.sort((a, b) => a - b).forEach((problem) => {
     try {
         const { solution, defaultInput } = solutions[problem];
 
