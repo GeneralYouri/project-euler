@@ -21,13 +21,13 @@ We can see the Triangular numbers on the third row (and the third column), thus 
 We want to get the fifth Triangular number, `15`, which sits in the fifth column, thus index 4.
 To do so we add the number to its left `10` (the fourth Triangular number, index 3) and the number above it `5` (the fifth Natural number, index 4).
 
+---
+
 As the table shows, this works not just for any Triangular number, but this sequence can be applied infinitely in both directions.
 Taking the list of Natural numbers, the number of paths through a `width x height` grid can be found on row index `width` and column index `height`.
 For a 4x3 grid this works out to be the fifth column (index 4) and the fourth row (index 3): 35.
 
----
-
-Using the above knowledge, for a `width x height` grid we can generate the first `width` numbers in the first `height` sequences in order to reach our desired answer.
+Using this knowledge, for a `width x height` grid we can generate the first `width` numbers in the first `height` sequences in order to reach our desired answer.
 This approach is used in the solution Alternative 1.
 Note that the sequence grows pretty fast, such that 28x28 is the largest square grid for which the number of paths is below `Number.MAX_SAFE_INTEGER`.
 In fact, for square grids, the number of digits in the solution is roughly equal to `0.6 * size` (for the desired 20x20 grid: `0.6 * 20 = 12` which is correct).
@@ -48,8 +48,7 @@ s(5)(n) = 1/120 * (n + 5)(n + 4)(n + 3)(n + 2)(n + 1)
 ...
 ```
 
-Let's rewrite that last formula to better identify the pattern: `s(5)(n) = (n + 5)(n + 4)(n + 3)(n + 2)(n + 1) / 120`.
-If we take a sample input of `n = 4`, this would work out to `9 * 8 * 7 * 6 * 5 / 120`.
+If we take a sample input of `n = 4`, this would work out to `1/120 * 9 * 8 * 7 * 6 * 5`.
 But because the multipliers are sequential, they're actually equal to `(n + 5)! / n!`.
 Meanwhile that divider of 120 is actually equal to `5!`.
 

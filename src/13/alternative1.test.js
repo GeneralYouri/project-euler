@@ -1,6 +1,4 @@
-const solution = require('./alternative1');
-const { readFileSync } = require('fs');
-const defaultInput = readFileSync(require.resolve('./input.txt'), { encoding: 'UTF-8' });
+const { alternative1: solution, defaultInput } = require('./');
 
 test('Provided test cases', () => {
 
