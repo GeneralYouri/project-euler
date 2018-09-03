@@ -14,8 +14,6 @@ Additionally, since this loop is for the middle number, it must be larger than `
 
 Such a solution does unfortunately still test a whole lot of futile combinations of numbers, so improvements are definitely possible.
 
-```
-soon(tm)
-```
+TODO: Add new solutions / Improve existing solutions
 
 See [Euler's Sieve](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes#Euler's_Sieve)
