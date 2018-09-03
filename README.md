@@ -6,7 +6,7 @@ Project Euler Solutions (JS) - https://projecteuler.net/
 Requires NodeJS v10.4.0 or higher
 
 Run via
-```javascript
+```bash
 node .
 ```
 By default this will attempt to run every problem solution, in order.
