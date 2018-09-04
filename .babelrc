@@ -1,4 +1,8 @@
 {
-    "presets": ["@babel/preset-env"],
-    "plugins": ["@babel/plugin-syntax-bigint"]
+    "presets": [
+        ["@babel/preset-env", { "targets": { "node": true } }]
+    ],
+    "plugins": [
+        "@babel/plugin-syntax-bigint"
+    ]
 }
