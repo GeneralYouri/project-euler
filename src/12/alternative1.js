@@ -6,27 +6,29 @@ const triangularGenerator = function* () {
     }
 };
 
-const getDividers = (n) => {
+const getDivisors = (n) => {
     const sqrt = Math.sqrt(n);
-    const dividers = [];
+    const divisors = [];
     const mirrors = [];
 
-    for (let i = 1; i <= sqrt; i += 1) {
+    const di = n % 2 + 1;
+    for (let i = 1; i <= sqrt; i += di) {
         const div = n / i;
         if (Math.floor(div) * i === n) {
-            dividers.push(i);
+            divisors.push(i);
             mirrors.push(div);
         }
     }
 
-    return [...dividers, ...mirrors.reverse()];
+    return [...divisors, ...mirrors.reverse()];
 };
 
 const getDividerCount = (n) => {
     const sqrt = Math.floor(Math.sqrt(n));
     let dividerCount = 0;
 
-    for (let i = 1; i <= sqrt; i += 1) {
+    const di = n % 2 + 1;
+    for (let i = 1; i <= sqrt; i += di) {
         const div = n / i;
         if (Math.floor(div) * i === n) {
             dividerCount += 2;

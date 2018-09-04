@@ -1,7 +1,7 @@
 const deltas = [[1, 0], [0, 1], [1, 1], [1, -1]]; // left-to-right, top-to-bot, topleft-to-botleft, topright-to-botleft
 
 module.exports = (input, numbersPerProduct = 4) => {
-    const numbers = input.split('\n').map(line => line.split(' ').map(Number));
+    const numbers = input.split('\n').map(line => line.split(/\s/g).map(Number));
     if (
         numbers.length === 0 || numbers[0].length === 0
         || numbersPerProduct < 1 || numbersPerProduct > numbers.length || numbersPerProduct > numbers[0].length

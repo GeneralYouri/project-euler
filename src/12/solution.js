@@ -6,7 +6,7 @@ const triangularGenerator = function* () {
     }
 };
 
-// A low-level primality check that simply iterates all possible dividers
+// A low-level primality check that simply iterates all possible divisors
 const isPrime = (n) => {
     if (n < 2 || n % 2 === 0) {
         return false;
@@ -93,11 +93,11 @@ module.exports = (input) => {
         prime = primes.next();
     }
 
-    // Calculate the dividers until we find the first triangular with a sufficient divider count
-    let dividers = getFactorCount(triangular.value);
-    while (dividers <= minCount) {
+    // Calculate the divisors until we find the first triangular with a sufficient divider count
+    let divisors = getFactorCount(triangular.value);
+    while (divisors <= minCount) {
         triangular = triangulars.next();
-        dividers = getFactorCount(triangular.value);
+        divisors = getFactorCount(triangular.value);
     }
 
     return triangular.value;

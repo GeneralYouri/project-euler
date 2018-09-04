@@ -1,4 +1,4 @@
-// A low-level primality check that simply iterates all possible dividers
+// A low-level primality check that simply iterates all possible divisors
 const isPrime = (n) => {
     if (n < 2 || n % 2 === 0) {
         return false;
