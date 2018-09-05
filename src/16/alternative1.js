@@ -16,7 +16,7 @@ module.exports = (input) => {
         let newProductStr = '';
         overflow = 0;
 
-        for (let i = 0; productStr.length > 0; i += digitsPerChunk) {
+        for (let chunk = 0; productStr.length > 0; chunk += digitsPerChunk) {
             const digits = productStr.slice(-digitsPerChunk);
             productStr = productStr.slice(0, -digitsPerChunk);
 

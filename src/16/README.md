@@ -16,7 +16,7 @@ In fact, because we have to cap our chunks to 15 digits, the largest possible ch
 When the required power of 2 is not a multiple of 3, we can apply the remainder powers to our base value.
 For example: if we want `2^10`, then `10 % 3 = 1`; so our starting value is `2^1`, after which we can apply three multiplications by `2^3`.
 
-We can also optimize further by changing these values.
+We can also optimize further by tuning these values.
 If we lower the number of digits per chunk, we can further increase the number of powers we can apply per round.
 For example: at 15 digits we could apply 3 powers per round, at 14 digits we are an extra factor of 10 below `Number.MAX_SAFE_INTEGER`, and thus we can apply 3 more powers for a total of 6.
 Here's a table of all possible chunk sizes, and the theoretical maximum number of powers of 2 that can safely be consumed:
