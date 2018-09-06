@@ -26,7 +26,7 @@ const solutions = require('./src');
 module.exports = solutions;
 
 
-const problems = Array.isArray(argv.problem) ? argv.problem : Object.keys(solutions);
+const problems = argv.problem.length ? argv.problem : Object.keys(solutions);
 problems.sort((a, b) => a - b).forEach((problem) => {
     try {
         const { solution, defaultInput } = solutions[problem];
