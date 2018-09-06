@@ -1,4 +1,4 @@
-const triangularGenerator = function* () {
+const triangularGenerator = function* triangularGenerator() {
     let n = 0;
     for (let i = 1; true; i += 1) {
         n += i;
@@ -6,22 +6,22 @@ const triangularGenerator = function* () {
     }
 };
 
-const getDivisors = (n) => {
-    const sqrt = Math.sqrt(n);
-    const divisors = [];
-    const mirrors = [];
-
-    const di = n % 2 + 1;
-    for (let i = 1; i <= sqrt; i += di) {
-        const div = n / i;
-        if (Math.floor(div) * i === n) {
-            divisors.push(i);
-            mirrors.push(div);
-        }
-    }
-
-    return [...divisors, ...mirrors.reverse()];
-};
+// const getDivisors = (n) => {
+//     const sqrt = Math.sqrt(n);
+//     const divisors = [];
+//     const mirrors = [];
+//
+//     const di = n % 2 + 1;
+//     for (let i = 1; i <= sqrt; i += di) {
+//         const div = n / i;
+//         if (Math.floor(div) * i === n) {
+//             divisors.push(i);
+//             mirrors.push(div);
+//         }
+//     }
+//
+//     return [...divisors, ...mirrors.reverse()];
+// };
 
 const getDividerCount = (n) => {
     const sqrt = Math.floor(Math.sqrt(n));

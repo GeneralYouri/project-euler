@@ -1,4 +1,4 @@
-const triangularGenerator = function* () {
+const triangularGenerator = function* triangularGenerator() {
     let n = 0;
     for (let i = 1; true; i += 1) {
         n += i;
@@ -32,7 +32,7 @@ const isPrime = (n) => {
 };
 
 // An infinite generator for the collection of prime numbers
-const primeGenerator = function* () {
+const primeGenerator = function* primeGenerator() {
     yield 2;
 
     for (let candidate = 3; true; candidate += 2) {

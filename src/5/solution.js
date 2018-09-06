@@ -24,7 +24,7 @@ const isPrime = (n) => {
 };
 
 // An infinite generator for the collection of prime numbers
-const primeGenerator = function* () {
+const primeGenerator = function* primeGenerator() {
     yield 2;
 
     for (let candidate = 3; true; candidate += 2) {
@@ -50,7 +50,7 @@ module.exports = (input) => {
     // Primes at or below sqrt are included as many times as they can fit below input
     // Ex: LCM(10) => sqrt(10) ~ 3; 2^3 = 8 < 10 while 2^4 = 16 > 10, so 2^3 is used
     while (prime.value <= sqrt) {
-        lcm *= Math.pow(prime.value, Math.floor(log / Math.log(prime.value)));
+        lcm *= prime.value ** Math.floor(log / Math.log(prime.value));
         prime = primes.next();
     }
 

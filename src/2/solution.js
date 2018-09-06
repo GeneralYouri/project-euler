@@ -1,5 +1,5 @@
 // A generator for a variant of the fibonacci number sequence, returning only the even numbers
-const evenFibonacciGenerator = function* (limit = Number.MAX_SAFE_INTEGER) {
+const evenFibonacciGenerator = function* evenFibonacciGenerator(limit = Number.MAX_SAFE_INTEGER) {
     let n1 = 0;
     let n2 = 2;
 

@@ -1,10 +1,10 @@
 const { readFileSync } = require('fs');
 const { solution, defaultInput } = require('./');
 
-const testInput = (function () {
+const testInput = (() => {
     const data = readFileSync(require.resolve('./input-test.txt'), { encoding: 'UTF-8' });
     return n => data.split(/\n/g).slice(0, n).join('\n');
-}());
+})();
 
 test('Provided test cases', () => {
     expect(solution('3\n7 4\n2 4 6\n8 5 9 3')).toBe(23);

@@ -2,8 +2,8 @@
 
 This Problem is very similar to [Problem 16](https://github.com/GeneralYouri/project-euler/blob/master/src/16/README.md), and the same strategies apply.
 BigInts allow us to simply calculate the value and sum its individual digits.
-
 Ofcourse, much like for Problem 16, I've also included a non-BigInt solution.
+
 As much of the strategy remains the same as for Problem 16, I'll only talk about the differences here.
 
 ---

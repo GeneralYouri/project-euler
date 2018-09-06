@@ -1,8 +1,8 @@
 # [Problem 16](https://projecteuler.net/problem=16): Power digit sum
 
 BigInts allow us to simply calculate the value and sum its 302 individual digits.
-
 Ofcourse I've also included a non-BigInt solution.
+
 For this approach we need to apply repeated, chunked multiplication such that none of our calculations overflow `Number.MAX_SAFE_INTEGER`.
 
 As we know that our result number will greatly exceed this value (302 vs 16 digits), at every iteration we can split our number up in chunks of at most 15 digits.

@@ -13,7 +13,6 @@ module.exports = (input) => {
         factorialStr = factorial.toString();
     } else {
         const digitsPerChunk = Math.floor(Math.log10(Number.MAX_SAFE_INTEGER / limit));
-        const multipliersPerRound = 1;
         const divisor = 10 ** digitsPerChunk;
 
         factorialStr = '1';

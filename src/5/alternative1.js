@@ -24,7 +24,7 @@ const isPrime = (n) => {
 };
 
 // An infinite generator for the collection of prime numbers
-const primeGenerator = function* () {
+const primeGenerator = function* primeGenerator() {
     yield 2;
 
     for (let candidate = 3; true; candidate += 2) {
@@ -81,5 +81,5 @@ module.exports = (input) => {
     }, {});
 
     // Calculate and return the LCM
-    return Object.entries(lcmFactors).reduce((lcm, [factor, hits]) => lcm * Math.pow(Number(factor), hits), 1);
+    return Object.entries(lcmFactors).reduce((lcm, [factor, hits]) => lcm * Number(factor) ** hits, 1);
 };
