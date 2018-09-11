@@ -1,3 +1,4 @@
+// TODO: Add new solutions / Improve existing solutions
 module.exports = (input) => {
     const limitC = Math.floor(Number(input));
     const limitB = Math.floor(limitC / 2);

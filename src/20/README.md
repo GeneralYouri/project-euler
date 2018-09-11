@@ -42,4 +42,4 @@ For example, 50% of `Number.MAX_SAFE_INTEGER` goes to upping the number of multi
 To do so, we work with log10 and see how many times our input number fits within that 50%.
 Then we calculate how much is left and base our chunk size off that.
 
-TODO: For this problem, applying multiple number per round has not yet been implemented.
+// TODO: For this problem, applying multiple numbers per round has not yet been implemented.

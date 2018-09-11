@@ -1,3 +1,4 @@
+// TODO: For this problem, applying multiple numbers per round has not yet been implemented.
 module.exports = (input) => {
     const limit = Math.floor(Number(input));
     if (limit < 0) {

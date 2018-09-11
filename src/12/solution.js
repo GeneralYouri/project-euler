@@ -70,6 +70,8 @@ const getFactorCount = (n) => {
     return factors;
 };
 
+// TODO: Write readme
+// TODO: Add new solutions / Improve existing solutions
 module.exports = (input) => {
     const minCount = Math.floor(Number(input));
     const minimum = Math.ceil(minCount / 2) ** 2;

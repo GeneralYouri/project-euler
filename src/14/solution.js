@@ -23,6 +23,9 @@ const doCollatz = (n) => {
     return terms;
 };
 
+// TODO: Write readme
+// TODO: Write tests
+// TODO: Add new solutions / Improve existing solutions
 module.exports = (input) => {
     const limit = Math.floor(Number(input));
     if (limit < 0) {
