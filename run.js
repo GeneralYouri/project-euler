@@ -14,10 +14,9 @@ const { argv } = require('yargs')
             array: true,
             string: true,
         },
-        time: {
-            alias: 't',
-            type: 'bool',
-            default: false,
+        console: {
+            alias: ['suppress-console', 'c'],
+            type: 'boolean',
         },
     })
     .alias({ help: 'h', version: 'v' });
@@ -47,6 +46,9 @@ const formatTotal = (problem, time, solved) => {
     return `${header} | \x1b[38;5;240mTime:\x1b[0m ${timeStr} ms | \x1b[38;5;240mSolved:\x1b[0m ${solvedStr} / 635`;
 };
 
+const problems = argv.problem.length ? argv.problem : Object.keys(solutions);
+const allowConsole = argv.console !== undefined ? argv.console : problems.length <= 1;
+
 const runSolution = (problem, fn, input) => {
     if (!fn) {
         console.log(formatError([problem], 'No solution yet'));
@@ -55,8 +57,11 @@ const runSolution = (problem, fn, input) => {
 
     // Temporarily suppress console.log
     const oldLogger = console.log;
-    console.log = () => {
-    };
+    console.log(!allowConsole);
+    if (!allowConsole) {
+        console.log = () => {
+        };
+    }
 
     // Run and time the solution
     const startTime = process.hrtime.bigint();
@@ -65,7 +70,9 @@ const runSolution = (problem, fn, input) => {
         answer = fn(...input);
     } catch (error) {
         // Restore console.log
-        console.log = oldLogger;
+        if (!allowConsole) {
+            console.log = oldLogger;
+        }
 
         console.log(formatError([problem], error.message));
         return false;
@@ -75,13 +82,13 @@ const runSolution = (problem, fn, input) => {
     const time = Number(endTime - startTime) / 1000000;
 
     // Restore console.log
-    console.log = oldLogger;
+    if (!allowConsole) {
+        console.log = oldLogger;
+    }
 
     console.log(formatInfo([problem], time, answer));
     return time;
 };
-
-const problems = argv.problem.length ? argv.problem : Object.keys(solutions);
 
 let timeTotal = 0;
 let solvedTotal = 0;
