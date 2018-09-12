@@ -12,6 +12,7 @@ test('Custom test cases', () => {
     expect(solution('3')).toBe(3);
     expect(solution('10')).toBe(5);
     expect(solution('8008135')).toBe(1601627);
+    expect(solution(Number.MAX_SAFE_INTEGER.toString())).toBe(20394401);
 });
 
 test('Problem input', () => {

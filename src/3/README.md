@@ -8,6 +8,5 @@ Therefore, to get the largest prime factor of our input number, we merely need t
 
 To do so we repeatedly attempt to divide our input with the lowest unchecked prime.
 Whenever the division has no remainder, we've found one of the prime factors.
-The remainder is our input divided by this prime, and we can iterate again from the lowest prime to find the next prime factor.
-We repeat this until our remainder is 1 (which it is guaranteed to become).
-Finally, we can record the highest prime factor found during the iteration.
+The remainder is our input divided by this prime, and we can iterate again from the newly found prime to find the next prime factor.
+We repeat this until our remainder itself is a prime factor - in which case that remainder is our last, and highest, prime factor, and thus the answer we're looking for.
