@@ -1,6 +1,6 @@
 module.exports = (w, h = w) => {
-    const width = Math.floor(Number(w));
-    const height = Math.floor(Number(h));
+    const width = Math.trunc(Number(w));
+    const height = Math.trunc(Number(h));
     if (width < 1 || height < 1) {
         return undefined;
     }

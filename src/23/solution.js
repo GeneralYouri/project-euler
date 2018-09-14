@@ -8,7 +8,7 @@ const getDivisorSum = (n) => {
     // Iterate all remaining divisors up to (but not including) sqrt
     for (let i = 1; i < sqrt; i += di) {
         const div = n / i;
-        if (Math.floor(div) * i === n) {
+        if (Math.trunc(div) * i === n) {
             sum += i + div;
         }
     }
@@ -27,7 +27,7 @@ const isAbundant = n => getDivisorSum(n) > n;
 //     const di = n % 2 + 1;
 //     for (let i = 1; i <= sqrt; i += di) {
 //         const div = n / i;
-//         if (Math.floor(div) * i === n) {
+//         if (Math.trunc(div) * i === n) {
 //             divisors.push(i);
 //             mirrors.push(div);
 //         }

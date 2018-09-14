@@ -8,7 +8,7 @@ const getDivisorSum = (n) => {
     // Iterate all remaining divisors up to (but not including) sqrt
     for (let i = 1; i < sqrt; i += di) {
         const div = n / i;
-        if (Math.floor(div) * i === n) {
+        if (Math.trunc(div) * i === n) {
             sum += i + div;
         }
     }
@@ -18,7 +18,7 @@ const getDivisorSum = (n) => {
 };
 
 module.exports = (input) => {
-    const limit = Math.floor(Number(input));
+    const limit = Math.trunc(Number(input));
     if (limit < 1) {
         return undefined;
     }

@@ -1,7 +1,7 @@
 // TODO: write a solution based on direct calculation, without iteration
 module.exports = (input) => {
-    const limit = Math.floor(Number(input));
-    const size = Math.floor(limit / 2);
+    const limit = Math.trunc(Number(input));
+    const size = Math.trunc(limit / 2);
     if (limit < 1 || limit % 2 === 0) {
         return undefined;
     }

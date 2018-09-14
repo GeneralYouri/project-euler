@@ -7,6 +7,7 @@ test('Provided test cases', () => {
 test('Custom test cases', () => {
     expect(solution(-1)).toBeUndefined();
     expect(solution(0)).toBeUndefined();
+    expect(solution(1)).toBe('0123456789');
     expect(solution(3628800)).toBe('9876543210');
     expect(solution(3628801)).toBeUndefined();
     expect(solution(355687428096001, 'abcdefghijklmnopqr')).toBe('bacdefghijklmnopqr');

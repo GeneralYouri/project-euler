@@ -18,7 +18,7 @@ const isPrime = (n) => {
         return false;
     }
 
-    const sqrt = Math.floor(Math.sqrt(n));
+    const sqrt = Math.trunc(Math.sqrt(n));
     for (let i = 5; i <= sqrt; i += 6) {
         if (n % i === 0) {
             return false;
@@ -73,7 +73,7 @@ const getFactorCount = (n) => {
 // TODO: Write readme
 // TODO: Add new solutions / Improve existing solutions
 module.exports = (input) => {
-    const minCount = Math.floor(Number(input));
+    const minCount = Math.trunc(Number(input));
     const minimum = Math.ceil(minCount / 2) ** 2;
     if (minCount < 0) {
         return undefined;

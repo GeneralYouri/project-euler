@@ -1,6 +1,6 @@
 module.exports = (input) => {
-    const limit = Math.floor(Number(input));
-    const sqrt = Math.floor(Math.sqrt(limit));
+    const limit = Math.trunc(Number(input));
+    const sqrt = Math.trunc(Math.sqrt(limit));
     if (limit <= 2) {
         return 0;
     }

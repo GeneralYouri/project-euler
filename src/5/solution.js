@@ -10,7 +10,7 @@ const isPrime = (n) => {
         return false;
     }
 
-    const sqrt = Math.floor(Math.sqrt(n));
+    const sqrt = Math.trunc(Math.sqrt(n));
     for (let i = 5; i <= sqrt; i += 6) {
         if (n % i === 0) {
             return false;
@@ -36,7 +36,7 @@ const primeGenerator = function* primeGenerator() {
 
 // Calculate the LCM for 1 .. input by determining the required prime factors
 module.exports = (input) => {
-    const limit = Math.floor(Number(input));
+    const limit = Math.trunc(Number(input));
     const sqrt = Math.sqrt(limit);
     const log = Math.log(limit);
     if (limit < 1) {
@@ -50,7 +50,7 @@ module.exports = (input) => {
     // Primes at or below sqrt are included as many times as they can fit below input
     // Ex: LCM(10) => sqrt(10) ~ 3; 2^3 = 8 < 10 while 2^4 = 16 > 10, so 2^3 is used
     while (prime.value <= sqrt) {
-        lcm *= prime.value ** Math.floor(log / Math.log(prime.value));
+        lcm *= prime.value ** Math.trunc(log / Math.log(prime.value));
         prime = primes.next();
     }
 

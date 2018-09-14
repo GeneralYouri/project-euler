@@ -10,7 +10,7 @@ const isPrime = (n) => {
         return false;
     }
 
-    const sqrt = Math.floor(Math.sqrt(n));
+    const sqrt = Math.trunc(Math.sqrt(n));
     for (let i = 5; i <= sqrt; i += 6) {
         if (n % i === 0) {
             return false;
@@ -35,7 +35,7 @@ const primeGenerator = function* primeGenerator() {
 };
 
 module.exports = (input) => {
-    const limit = Math.floor(Number(input));
+    const limit = Math.trunc(Number(input));
     if (limit < 2) {
         return 0;
     }

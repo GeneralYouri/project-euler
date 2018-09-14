@@ -1,5 +1,5 @@
 module.exports = (input) => {
-    const limit = Math.floor(Number(input));
+    const limit = Math.trunc(Number(input));
     if (limit < 0) {
         return undefined;
     }

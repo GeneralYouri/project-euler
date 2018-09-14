@@ -1,6 +1,6 @@
 // TODO: For this problem, applying multiple numbers per round has not yet been implemented.
 module.exports = (input) => {
-    const limit = Math.floor(Number(input));
+    const limit = Math.trunc(Number(input));
     if (limit < 0) {
         return undefined;
     }
@@ -13,7 +13,7 @@ module.exports = (input) => {
         }
         factorialStr = factorial.toString();
     } else {
-        const digitsPerChunk = Math.floor(Math.log10(Number.MAX_SAFE_INTEGER / limit));
+        const digitsPerChunk = Math.trunc(Math.log10(Number.MAX_SAFE_INTEGER / limit));
         const divisor = 10 ** digitsPerChunk;
 
         factorialStr = '1';
@@ -28,7 +28,7 @@ module.exports = (input) => {
                 factorialStr = factorialStr.slice(0, -digitsPerChunk);
 
                 const multiple = Number(digits) * multiplier + overflow;
-                overflow = Math.floor(multiple / divisor);
+                overflow = Math.trunc(multiple / divisor);
                 const remainder = multiple - overflow * divisor;
 
                 newFactorialStr = remainder.toString().padStart(digitsPerChunk, '0') + newFactorialStr;

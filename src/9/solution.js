@@ -1,8 +1,8 @@
 // TODO: Add new solutions / Improve existing solutions
 module.exports = (input) => {
-    const limitC = Math.floor(Number(input));
-    const limitB = Math.floor(limitC / 2);
-    const limitA = Math.floor(limitC / 3);
+    const limitC = Math.trunc(Number(input));
+    const limitB = Math.trunc(limitC / 2);
+    const limitA = Math.trunc(limitC / 3);
 
     for (let a = 3; a < limitA; a += 1) {
         for (let b = a + 1; b < limitB; b += 1) {

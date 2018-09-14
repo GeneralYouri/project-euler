@@ -1,5 +1,5 @@
 module.exports = (input) => {
-    const power = Math.floor(Number(input));
+    const power = Math.trunc(Number(input));
     if (power < 0n) {
         return undefined;
     }
@@ -21,7 +21,7 @@ module.exports = (input) => {
             productStr = productStr.slice(0, -digitsPerChunk);
 
             const multiple = Number(digits) * multiplier + overflow;
-            overflow = Math.floor(multiple / divisor);
+            overflow = Math.trunc(multiple / divisor);
             const remainder = multiple - overflow * divisor;
 
             newProductStr = remainder.toString().padStart(digitsPerChunk, '0') + newProductStr;

@@ -7,7 +7,7 @@ const factorial = (limit) => {
 };
 
 module.exports = (permutationN, digits = '0123456789') => {
-    let remainingPermutations = Math.floor(Number(permutationN)) - 1;
+    let remainingPermutations = Math.trunc(Number(permutationN)) - 1;
     let remainingDigits = digits.slice();
     if (remainingPermutations < 0 || remainingDigits.length === 0) {
         return undefined;
@@ -20,7 +20,7 @@ module.exports = (permutationN, digits = '0123456789') => {
 
     while (remainingDigits.length > 0) {
         const divisor = factorial(remainingDigits.length - 1);
-        const nextIndex = Math.floor(remainingPermutations / divisor);
+        const nextIndex = Math.trunc(remainingPermutations / divisor);
         remainingPermutations -= nextIndex * divisor;
 
         const nextDigit = remainingDigits.charAt(nextIndex);

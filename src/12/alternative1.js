@@ -14,7 +14,7 @@ const triangularGenerator = function* triangularGenerator() {
 //     const di = n % 2 + 1;
 //     for (let i = 1; i <= sqrt; i += di) {
 //         const div = n / i;
-//         if (Math.floor(div) * i === n) {
+//         if (Math.trunc(div) * i === n) {
 //             divisors.push(i);
 //             mirrors.push(div);
 //         }
@@ -24,13 +24,13 @@ const triangularGenerator = function* triangularGenerator() {
 // };
 
 const getDividerCount = (n) => {
-    const sqrt = Math.floor(Math.sqrt(n));
+    const sqrt = Math.trunc(Math.sqrt(n));
     let dividerCount = 0;
 
     const di = n % 2 + 1;
     for (let i = 1; i <= sqrt; i += di) {
         const div = n / i;
-        if (Math.floor(div) * i === n) {
+        if (Math.trunc(div) * i === n) {
             dividerCount += 2;
         }
     }
@@ -43,7 +43,7 @@ const getDividerCount = (n) => {
 };
 
 module.exports = (input) => {
-    const dividerCount = Math.floor(Number(input));
+    const dividerCount = Math.trunc(Number(input));
     const minimum = (dividerCount / 2) ** 2;
     if (dividerCount < 0) {
         return undefined;

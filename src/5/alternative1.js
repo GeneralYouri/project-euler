@@ -10,7 +10,7 @@ const isPrime = (n) => {
         return false;
     }
 
-    const sqrt = Math.floor(Math.sqrt(n));
+    const sqrt = Math.trunc(Math.sqrt(n));
     for (let i = 5; i <= sqrt; i += 6) {
         if (n % i === 0) {
             return false;
@@ -62,7 +62,7 @@ const getPrimeFactorsObject = (n) => {
 
 // Calculate the LCM for 1 .. input by combining the prime factors of every number in the range
 module.exports = (input) => {
-    const limit = Math.floor(Number(input));
+    const limit = Math.trunc(Number(input));
     if (limit < 1) {
         return undefined;
     }
