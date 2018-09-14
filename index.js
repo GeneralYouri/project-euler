@@ -1,4 +1,7 @@
 const solutions = require('./src');
-require('./run');
+
+if (module === require.main) {
+    require('./run');
+}
 
 module.exports = solutions;

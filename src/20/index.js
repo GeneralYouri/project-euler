@@ -1,9 +1,9 @@
 const { readFileSync } = require('fs');
+const { runSolution } = require('./../../lib');
 const solution = require('./solution');
 const alternative1 = require('./alternative1');
 
 const defaultInput = readFileSync(require.resolve('./input.txt'), { encoding: 'UTF-8' });
-
 module.exports = { solution, alternative1, defaultInput };
 
 if (module === require.main) {
@@ -12,9 +12,6 @@ if (module === require.main) {
         input = Array.isArray(defaultInput) ? defaultInput : [defaultInput];
     }
 
-    const start = process.hrtime();
-    const answer = solution(...input);
-    const time = process.hrtime(start);
-    console.log('Problem answer:', answer);
-    console.log('Problem time: %d ms', time[0] * 1000 + time[1] / 1000000);
+    runSolution('Main solution', solution, input);
+    runSolution('Alternative 1', alternative1, input);
 }
