@@ -1,6 +1,6 @@
 module.exports = (input) => {
     const power = Math.trunc(Number(input));
-    if (power < 0n) {
+    if (power < 0) {
         return undefined;
     }
 
