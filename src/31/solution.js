@@ -12,7 +12,7 @@ const countUniques = (remainder, coinTypes) => {
     const possibleTypes = coinTypes.filter(type => type <= remainder);
     return possibleTypes.reduce((acc, type) => {
         const newRemainder = remainder - type;
-        const newTypes = possibleTypes.filter(possibleType => possibleType <= type && possibleType <= remainder);
+        const newTypes = possibleTypes.filter(possibleType => possibleType <= type && possibleType <= newRemainder);
 
         const hash = hasher(newRemainder, newTypes);
         if (!foundUniques[hash]) {
