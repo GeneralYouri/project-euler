@@ -14,6 +14,12 @@ const { argv } = require('yargs')
             array: true,
             string: true,
         },
+        runs: {
+            alias: ['repeat', 'r'],
+            type: 'number',
+            default: 1,
+            describe: 'How many times every solution should be run; the runtimes will be averaged',
+        },
         console: {
             alias: ['suppress-console', 'c'],
             type: 'boolean',
@@ -41,23 +47,28 @@ const runSolution = (problem, fn, input) => {
         };
     }
 
-    // Run and time the solution
-    const startTime = process.hrtime.bigint();
-    let answer;
-    try {
-        answer = fn(...input);
-    } catch (error) {
-        // Restore console.log
-        if (!allowConsole) {
-            console.log = oldLogger;
+    const bindFn = fn.bind(null, ...input);
+    const answer = bindFn();
+    let time = 0;
+    for (let run = 1; run <= argv.runs; run += 1) {
+        // Run and time the solution
+        const startTime = process.hrtime.bigint();
+        try {
+            bindFn();
+        } catch (error) {
+            // Restore console.log
+            if (!allowConsole) {
+                console.log = oldLogger;
+            }
+
+            console.log(formatError([problem], error.message));
+            return false;
         }
 
-        console.log(formatError([problem], error.message));
-        return false;
+        const endTime = process.hrtime.bigint();
+        time += Number(endTime - startTime) / 1000000;
     }
-
-    const endTime = process.hrtime.bigint();
-    const time = Number(endTime - startTime) / 1000000;
+    time /= argv.runs;
 
     // Restore console.log
     if (!allowConsole) {
