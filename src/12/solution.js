@@ -8,13 +8,14 @@ const triangularGenerator = function* triangularGenerator() {
 
 // A low-level primality check that simply iterates all possible divisors
 const isPrime = (n) => {
-    if (n < 2 || n % 2 === 0) {
+    if (n === 2) {
+        return true;
+    } else if (n < 2 || n % 2 === 0) {
         return false;
     }
     if (n < 9) {
         return true;
-    }
-    if (n % 3 === 0) {
+    } else if (n % 3 === 0) {
         return false;
     }
 

@@ -5,7 +5,7 @@ const alternative1 = require('./alternative1');
 const alternative2 = require('./alternative2');
 
 const defaultInput = readFileSync(require.resolve('./input.txt'), { encoding: 'UTF-8' });
-module.exports = { solution: alternative1, alternative2, defaultInput };
+module.exports = { solution, alternative1, alternative2, defaultInput };
 
 if (module === require.main) {
     let input = process.argv.slice(2);
