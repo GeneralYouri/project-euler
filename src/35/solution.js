@@ -27,26 +27,37 @@ const isPrime = (n) => {
 // An infinite generator for the collection of prime numbers
 const primeGenerator = function* primeGenerator() {
     yield 2;
+    yield 3;
 
-    for (let candidate = 3; true; candidate += 2) {
+    for (let candidate = 5; true; candidate += 6) {
         if (isPrime(candidate)) {
             yield candidate;
+        }
+        if (isPrime(candidate + 2)) {
+            yield candidate + 2;
         }
     }
 };
 
+const getCirculars = (n) => {
+    const digits = n.toString().split('');
+    return Array.from(Array(digits.length)).map((_, index) => Number(digits.slice(index).join('') + digits.slice(0, index).join('')));
+};
+
 module.exports = (input) => {
-    const targetIndex = Math.trunc(Number(input));
-    if (targetIndex < 1) {
-        return undefined;
-    }
+    const limit = Math.trunc(Number(input));
 
     const primes = primeGenerator();
-    let prime;
+    let prime = primes.next().value;
+    let circularCount = 0;
 
-    for (let index = 0; index < targetIndex; index += 1) {
-        prime = primes.next();
+    while (prime < limit) {
+        const circulars = getCirculars(prime);
+        if (circulars.every(isPrime)) {
+            circularCount += 1;
+        }
+        prime = primes.next().value;
     }
 
-    return prime.value;
+    return circularCount;
 };
