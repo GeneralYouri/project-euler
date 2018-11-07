@@ -1,12 +1,4 @@
-const { primeGenerator } = require('aoc-toolkit');
-
-const triangularGenerator = function* triangularGenerator() {
-    let n = 0;
-    for (let i = 1; true; i += 1) {
-        n += i;
-        yield n;
-    }
-};
+const { primeGenerator, triangularGenerator } = require('aoc-toolkit');
 
 const primeList = [];
 

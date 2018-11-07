@@ -1,10 +1,4 @@
-const triangularGenerator = function* triangularGenerator() {
-    let n = 0;
-    for (let i = 1; true; i += 1) {
-        n += i;
-        yield n;
-    }
-};
+const { triangularGenerator } = require('aoc-toolkit');
 
 // const getDivisors = (n) => {
 //     const sqrt = Math.sqrt(n);
