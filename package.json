@@ -22,7 +22,8 @@
         "node": ">=10.4.0"
     },
     "dependencies": {
-        "yargs": "^12.0.1"
+        "aoc-toolkit": "git+https://github.com/GeneralYouri/AOC-Toolkit.git",
+        "yargs": "^12.0.2"
     },
     "devDependencies": {
         "@babel/core": "^7.1.5",
