@@ -1,3 +1,5 @@
+const { createFibonacciGenerator } = require('aoc-toolkit');
+
 // Perform addition on two numbers in chunks, to avoid floating point limitations
 const chunkedAdd = (a, b) => {
     const digitsPerChunk = 15;
@@ -23,21 +25,7 @@ const chunkedAdd = (a, b) => {
     return sumStr.replace(/^0+/, '');
 };
 
-// A generator for a variant of the fibonacci number sequence, returning only the even numbers
-const fibonacciGenerator = function* fibonacciGenerator(limit) {
-    let n1 = '0';
-    let n2 = '1';
-
-    while (true) {
-        if (n2 > limit) {
-            return;
-        }
-
-        yield n2;
-
-        ([n1, n2] = [n2, chunkedAdd(n1, n2)]);
-    }
-};
+const fibonacciGenerator = createFibonacciGenerator('0', '1', chunkedAdd);
 
 module.exports = (input) => {
     const digitCount = Math.trunc(Number(input));

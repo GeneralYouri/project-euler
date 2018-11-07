@@ -1,4 +1,4 @@
-const sumForDivisor = (limit, divisor) => {
+const sumOfMultiples = (limit, divisor) => {
     const occurrences = Math.trunc((limit - 1) / divisor);
     return ((occurrences + 1) * divisor) / 2 * occurrences;
 };
@@ -6,5 +6,5 @@ const sumForDivisor = (limit, divisor) => {
 module.exports = (input) => {
     const limit = Math.trunc(Number(input));
 
-    return sumForDivisor(limit, 3) + sumForDivisor(limit, 5) - sumForDivisor(limit, 3 * 5);
+    return sumOfMultiples(limit, 3) + sumOfMultiples(limit, 5) - sumOfMultiples(limit, 3 * 5);
 };
