@@ -1,15 +1,25 @@
-// The formula seems correct, but occasionally returns off-by-one results, the first one at 232 digits
-// This may just be the result of floating point inaccuracies, but I'm not 100% sure on this
+// Golden Ratio
+const Phi = (1 + Math.sqrt(5)) / 2;
+
+// Binet's formula calculates the index of the Fibonacci number nearest to a given number n
+// For improved precision we instead accept a log10n, the log10 of n (so we assume Math.log10(n))
+const binet = log10n => Math.round((log10n + Math.log10(Math.sqrt(5))) / Math.log10(Phi));
+
+const getNthFibonacci = n => Math.round(Phi ** n / Math.sqrt(5));
+
 module.exports = (input) => {
-    const digitCount = Math.trunc(Number(input));
-    if (digitCount < 1) {
+    const log10n = Number(input) - 1;
+    if (log10n < 0) {
         return undefined;
     }
-
-    if (digitCount === 1) {
+    if (log10n === 0) {
         return 1;
     }
 
-    const goldenRatio = (1 + Math.sqrt(5)) / 2;
-    return Math.round(digitCount / Math.log10(goldenRatio) - goldenRatio - 1);
+    let closestIndex = binet(log10n);
+    const closestFib = getNthFibonacci(closestIndex);
+    if (Math.log10(closestFib) < (log10n)) {
+        closestIndex += 1;
+    }
+    return closestIndex;
 };

@@ -11,6 +11,7 @@ test('Custom test cases', () => {
     expect(solution('2')).toBe(7);
     expect(solution('10')).toBe(45);
     expect(solution('100')).toBe(476);
+    expect(solution('1000')).toBe(4782);
     expect(solution('10000')).toBe(47847);
     expect(solution('1000000000000000')).toBe(4784971966781663);
 });
