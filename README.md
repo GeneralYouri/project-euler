@@ -27,3 +27,12 @@ Per problem you'll find the following contents:
   These contain sample inputs/outputs from the official website, the official input also from the official website, and other input/output combinations of interest.
 
 ---
+
+### TODO
+
+- Extract Prime Factors / Divisors functionality from solutions 5.1, 12, 12.1, 21.1, 23, 
+- Extract Factorial functionality from solutions 15, 24, 34, 
+- Initial solutions for problems 17, 19, 27, 32, 38, 
+- Add new solutions / Improve existing solutions for problems 9, 12, 14, 20.1, 23, 28, 33, 
+- Write tests for problems 14, 23, 33, 34, 35, 36, 37, 
+- Write readme for problems 12, 14, 23, 33, 34, 35, 36, 37, 

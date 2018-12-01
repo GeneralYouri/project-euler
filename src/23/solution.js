@@ -36,7 +36,7 @@ const isAbundant = n => getDivisorSum(n) > n;
 //     return [...divisors, ...mirrors.reverse()];
 // };
 
-// TODO: Write readme
+// TODO: Write tests & readme
 // TODO: Investigate in an attempt to optimize the algorithm further
 // For instance, the highest positive even number that can't be written as the sum of two abundant numbers, is 46
 // Likewise, the highest positive multiple of 5 that can't be written as the sum of two abundant numbers, is 1555

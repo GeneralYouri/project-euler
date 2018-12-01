@@ -11,6 +11,6 @@ A cycle is found when we encounter a numerator that we've seen before, as this m
 To be able to return the cycle length we keep track of when we encountered which numerators.
 If we have a remainder of 0 that means we've finished our division in a finite number of decimal places, and therefore there is no repeating cycle (the cycle length is 0).
 
-Because we use the modulo with the denominator `n`, this leaves only `(n - 1` possible values for our numerator, which is the theoretical limit on cycle length for any `n`.
+Because we use the modulo with the denominator `n`, this leaves only `n - 1` possible values for our numerator, which is the theoretical limit on cycle length for any `n`.
 By iterating from the highest candidate denominator to the lowest, we can use this upper bound to implement an early return.
 The moment we reach an iteration where our denominator `n` is lower than the largest cycle length we've found, this guarantees we can't find any larger cycles.
