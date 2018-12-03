@@ -1,24 +1,30 @@
 // TODO: Use yargs Commands
-// TODO: Add ability to run alternative solutions
 const { argv } = require('yargs')
     .options({
         problem: {
             alias: ['problems', 'p'],
-            describe: 'Choose which problem solution(s) to run',
             array: true,
             default: [],
+            describe: 'The problem solution(s) to run',
         },
         input: {
             alias: ['inputs', 'i'],
             implies: 'problem',
             array: true,
             string: true,
+            describe: 'The custom problem input, if any',
         },
         runs: {
             alias: ['repeat', 'r'],
             type: 'number',
             default: 1,
             describe: 'How many times every solution should be run; the runtimes will be averaged',
+        },
+        alts: {
+            alias: ['alternatives', 'a'],
+            type: 'boolean',
+            default: false,
+            describe: 'Whether or not alternative solutions should be run; the fastest solution will be counted',
         },
         console: {
             alias: ['suppress-console', 'c'],
@@ -34,9 +40,9 @@ const solutions = require('./src');
 const problems = argv.problem.length ? argv.problem : Object.keys(solutions);
 const allowConsole = argv.console !== undefined ? argv.console : problems.length <= 1;
 
-const runSolution = (problem, fn, input) => {
+const runSolution = (problem, alternative, fn, input) => {
     if (!fn) {
-        console.log(formatError([problem], 'No solution yet'));
+        console.log(formatError([problem, alternative], 'No solution yet'));
         return false;
     }
 
@@ -61,7 +67,7 @@ const runSolution = (problem, fn, input) => {
                 console.log = oldLogger;
             }
 
-            console.log(formatError([problem], error.message));
+            console.log(formatError([problem, alternative], error.message));
             return false;
         }
 
@@ -75,7 +81,7 @@ const runSolution = (problem, fn, input) => {
         console.log = oldLogger;
     }
 
-    console.log(formatInfo([problem], time, answer));
+    console.log(formatInfo([problem, alternative], time, answer));
     return time;
 };
 
@@ -90,9 +96,21 @@ problems.sort((a, b) => a - b).forEach((problem) => {
 
     const input = argv.input ? argv.input : [solution.defaultInput];
 
-    const time = runSolution(problem, solution.solution, input);
-    if (time) {
-        timeTotal += time;
+    const alternatives = [solution.solution];
+    if (argv.alts && solution.alternative1) {
+        alternatives.push(solution.alternative1);
+    }
+    if (argv.alts && solution.alternative2) {
+        alternatives.push(solution.alternative2);
+    }
+
+    const fastest = alternatives.reduce((acc, fn, index) => {
+        const time = runSolution(problem, index, fn, input);
+        return (time !== false && time < acc) ? time : acc;
+    }, Number.POSITIVE_INFINITY);
+
+    if (fastest && fastest !== Number.POSITIVE_INFINITY) {
+        timeTotal += fastest;
         solvedTotal += 1;
     }
 });

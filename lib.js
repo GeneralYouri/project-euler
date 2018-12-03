@@ -1,15 +1,15 @@
 const formatTime = ms => Number(ms.toPrecision(7)).toFixed(3);
 
-const formatHeader = problem => problem.toString().padStart(5, ' ');
+const formatHeader = ([problem, alternative]) => problem.toString().padStart(5, ' ') + (alternative ? '.' + alternative : '  ');
 
-const formatInfo = ([problem], time, answer) => {
-    const header = formatHeader(problem);
+const formatInfo = ([problem, alternative], time, answer) => {
+    const header = formatHeader([problem, alternative]);
     const timeStr = formatTime(time).slice(0, 8).padStart(8, ' ');
     return `${header} | \x1b[38;5;240mTime:\x1b[0m ${timeStr} ms | \x1b[38;5;240mAnswer:\x1b[0m ${answer}`;
 };
 
-const formatError = ([problem], message) => {
-    const header = formatHeader(problem);
+const formatError = ([problem, alternative], message) => {
+    const header = formatHeader([problem, alternative]);
     return `\x1b[31m${header}\x1b[0m | \x1b[31mSkip:\x1b[0m             | \x1b[31m${message}\x1b[0m`;
 };
 
