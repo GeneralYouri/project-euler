@@ -30,7 +30,7 @@ Per problem you'll find the following contents:
 
 ### TODO
 
-- Extract Prime Factors / Divisors functionality from solutions 5.1, 12, 12.1, 21.1, 23, 
+- Extract Prime Factors / Divisors functionality from solutions 5.1, 12, 12.1, 21.1, 23, 29.1, 
 - Extract Factorial functionality from solutions 15, 24, 34, 
 - Initial solutions for problems 17, 19, 27, 32, 38, 
 - Add new solutions / Improve existing solutions for problems 9, 12, 14, 20.1, 23, 28, 33, 
