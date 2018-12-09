@@ -1,15 +1,29 @@
-const factorial = (limit) => {
-    let product = 1;
-    for (let n = 2; n <= limit; n += 1) {
-        product *= n;
+let factorials = [];
+
+const isCurious = (n) => {
+    let sum = 0;
+    let remainder = n;
+
+    while (remainder > 0) {
+        const newRemainder = Math.floor(remainder / 10);
+        const digit = remainder - newRemainder * 10;
+        sum += factorials[digit];
+        remainder = newRemainder;
     }
-    return product;
+
+    return sum === n;
 };
 
-const isCurious = n => n === n.toString().split('').reduce((sum, digit) => sum + factorial(digit), 0);
-
 module.exports = () => {
-    const limit = factorial(9) * 7;
+    // Setup factorial table
+    let current = 1;
+    factorials = [current, current];
+    for (let m = 2; m <= 9; m += 1) {
+        current *= m;
+        factorials.push(current);
+    }
+
+    const limit = factorials[9] * 7;
 
     let sum = 0;
     for (let n = 10; n < limit; n += 1) {

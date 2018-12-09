@@ -13,4 +13,11 @@ Any numbers beyond this limit are too large to be formed by the sum of the facto
 With our search space thoroughly delimited, it's fairly trivial to brute force through.
 This reveals the only two numbers that satisfy the problem description: the given example of 145, and the number 40585.
 
+A digit can only have one of ten different values, and thus so can their factorial.
+Using this we can further reduce the runtime by up to 50% by memoizing the factorials of 0-9.
+
+I originally stringified numbers to separate out their individual digits.
+This proved to be the biggest slowdown in the entire algorithm, so this has since been rewritten.
+Now digits are split off one by one using simple maths, resulting in about 5x faster runtimes.
+
 The problem description doesn't leave much room for generalisation, so this solution doesn't accept any input.
