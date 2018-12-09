@@ -1,4 +1,12 @@
 let factorials = [];
+const setupFactorials = () => {
+    let current = 1;
+    factorials = [current, current];
+    for (let m = 2; m <= 9; m += 1) {
+        current *= m;
+        factorials.push(current);
+    }
+};
 
 const isCurious = (n) => {
     let sum = 0;
@@ -15,14 +23,7 @@ const isCurious = (n) => {
 };
 
 module.exports = () => {
-    // Setup factorial table
-    let current = 1;
-    factorials = [current, current];
-    for (let m = 2; m <= 9; m += 1) {
-        current *= m;
-        factorials.push(current);
-    }
-
+    setupFactorials();
     const limit = factorials[9] * 7;
 
     let sum = 0;
