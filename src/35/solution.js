@@ -15,11 +15,20 @@ const getRotations = (n) => {
 
 module.exports = (input) => {
     const limit = Math.trunc(Number(input));
+    if (limit < 2) {
+        return 0;
+    }
 
     const primes = primeGenerator();
     let prime = primes.next().value;
     // The only two primes that don't end on 1/3/7/9 are 2 and 5, both of which are single digits and thus circular by nature
-    let circularCount = 2;
+    let circularCount = 0;
+    if (limit > 2) {
+        circularCount += 1;
+    }
+    if (limit > 5) {
+        circularCount += 1;
+    }
 
     while (prime < limit) {
         const rotations = getRotations(prime);

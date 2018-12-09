@@ -34,5 +34,5 @@ Per problem you'll find the following contents:
 - Extract Factorial functionality from solutions 15, 24, 34, 
 - Initial solutions for problems 17, 19, 27, 32, 38, 
 - Add new solutions / Improve existing solutions for problems 9, 12, 14, 20.1, 23, 28, 33, 
-- Write tests for problems 14, 23, 35, 36, 37, 
-- Write readme for problems 12, 14, 23, 35, 36, 37, 
+- Write tests for problems 14, 23, 37, 
+- Write readme for problems 12, 14, 23, 37, 
