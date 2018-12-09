@@ -16,7 +16,7 @@ This reveals the only two numbers that satisfy the problem description: the give
 A digit can only have one of ten different values, and thus so can their factorial.
 Using this we can further reduce the runtime by up to 50% by memoizing the factorials of 0-9.
 
-I originally stringified numbers to separate out their individual digits.
+The solution originally stringified numbers to separate out their individual digits.
 This proved to be the biggest slowdown in the entire algorithm, so this has since been rewritten.
 Now digits are split off one by one using simple maths, resulting in about 5x faster runtimes.
 

@@ -1,10 +1,10 @@
 const { solution, defaultInput } = require('./');
 
-xtest('Provided test cases', () => {
-
+test('Provided test cases', () => {
+    expect(solution('100')).toBe(13);
 });
 
-xtest('Custom test cases', () => {
+test('Custom test cases', () => {
 
 });
 
