@@ -8,7 +8,7 @@ module.exports = (input) => {
     const limit = Math.trunc(Number(input));
 
     let palindromeSum = 0;
-    for (let n = 1; n < limit; n += 1) {
+    for (let n = 1; n < limit; n += 2) {
         if (isPalindrome(n) && isPalindrome(n.toString(2))) {
             palindromeSum += n;
         }
