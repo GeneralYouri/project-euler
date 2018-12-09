@@ -19,7 +19,7 @@ The reason for this is that the by far largest performance cost per iteration he
 We can solve this by using a mathematical approach to identifying the digits, as opposed to using `''.split`.
 To do so we iterate our candidate number, taking it mod 10 to give us our next digit.
 As long as we remove this digit and divide by 10 at the end of every iteration, we'll handle every digit once and end up at a remaining value of 0.
-This change added a performance boost of about a factor 15; just goes to show that, despite using one `%` AND one `/` per iteration, the number-based solution still vastly outperfors the string-based solution.
+This change added a performance boost of about a factor 15; just goes to show that, despite using one `%` AND one `/` per iteration, the number-based solution still vastly outperforms the string-based solution.
 
 ---
 
