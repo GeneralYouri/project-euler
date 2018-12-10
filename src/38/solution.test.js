@@ -1,12 +1,13 @@
 const { solution, defaultInput } = require('./');
 
-xtest('Provided test cases', () => {
+test('Provided test cases', () => {
+
 });
 
-xtest('Custom test cases', () => {
+test('Custom test cases', () => {
 
 });
 
 xtest('Problem input', () => {
-    expect(solution(defaultInput)).toBe();
+    expect(solution(defaultInput)).toBe(932718654);
 });
