@@ -8,22 +8,28 @@ const getTruncatables = (n) => {
 };
 
 module.exports = () => {
-    const truncatablePrimes = [];
-
     const primes = primeGenerator();
     for (let i = 0; i < 4; i += 1) {
         primes.next();
     }
 
+    let sum = 0;
+    let count = 0;
+
     do {
         const prime = primes.next().value;
+        if (/[4680]/g.test(prime)) {
+            continue;
+        }
+
         const truncatedSet = new Set(getTruncatables(prime));
         truncatedSet.delete(prime);
         const truncated = Array.from(truncatedSet).map(Number);
         if (truncated.every(isPrime)) {
-            truncatablePrimes.push(prime);
+            sum += prime;
+            count += 1;
         }
-    } while (truncatablePrimes.length < 11);
+    } while (count < 11);
 
-    return truncatablePrimes.reduce((sum, prime) => sum + prime, 0);
+    return sum;
 };

@@ -1,10 +1,10 @@
 const { solution, defaultInput } = require('./');
 
-xtest('Provided test cases', () => {
+test('Provided test cases', () => {
 
 });
 
-xtest('Custom test cases', () => {
+test('Custom test cases', () => {
 
 });
 
