@@ -8,6 +8,6 @@ test('Custom test cases', () => {
 
 });
 
-xtest('Problem input', () => {
+test('Problem input', () => {
     expect(solution(defaultInput)).toBe(932718654);
 });
