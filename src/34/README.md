@@ -1,5 +1,7 @@
 # [Problem 34](https://projecteuler.net/problem=34): Digit factorials
 
+**Note:** *This solution does not accept input*.
+
 The problem description gives us an obvious lower limit of 10 for our search space.
 If we inspect the growth rate of the formula being described, we can also establish a safe upper limit.
 
@@ -19,5 +21,3 @@ Using this we can further reduce the runtime by up to 50% by memoizing the facto
 The solution originally stringified numbers to separate out their individual digits.
 This proved to be the biggest slowdown in the entire algorithm, so this has since been rewritten.
 Now digits are split off one by one using simple maths, resulting in about 5x faster runtimes.
-
-The problem description doesn't leave much room for generalisation, so this solution doesn't accept any input.

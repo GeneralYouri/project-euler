@@ -1,6 +1,6 @@
 # [Problem 67](https://projecteuler.net/problem=67): Maximum path sum II
 
-**Note:** This problem uses the same solution as [Problem 18](https://github.com/GeneralYouri/project-euler/blob/master/src/18/README.md).
+**Note:** *This problem uses the same solution as [Problem 18](https://github.com/GeneralYouri/project-euler/blob/master/src/18/README.md).*
 
 We need to compute the largest possible sum of values, for which the values lie on a vertical path through the triangle of numbers.
 That is to say, a path contains 1 number per row in the triangle, and to go from one row to another we can only choose the number immediately left or right.

@@ -20,7 +20,6 @@ module.exports = (input) => {
         triangularSet.add(triangular);
         triangular = triangulars.next().value;
     }
-    console.log(triangularSet.size);
 
     return words.reduce((sum, word) => sum + (triangularSet.has(wordValue(word)) ? 1 : 0), 0);
 };

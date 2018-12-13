@@ -1,5 +1,7 @@
 # [Problem 38](https://projecteuler.net/problem=38): Pandigital multiples
 
+**Note:** *This solution does not accept input*.
+
 While we have an added variable `n` to work with, our search space is still very limited as there's very strict requirements on our pandigitals.
 That's because the concatenation of our products must be exactly length 9.
 
@@ -29,6 +31,6 @@ Our default / minimum value is 123456789, easily obtained via `n = 9` and `x = 1
 
 ---
 
-Due to manually deducing lower and upper bounds for every `n`, this problem solution isn't generalized and doesn't accept any input.
+Due to manually deducing lower and upper bounds for every `n`, this problem solution isn't generalized and currently doesn't accept any input.
 
 TODO: Explore feasability of accepting an input for the concatenation length (9 in the problem description for a 1-9 pandigital).
