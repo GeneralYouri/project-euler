@@ -33,7 +33,7 @@ const { argv } = require('yargs')
     })
     .alias({ help: 'h', version: 'v' });
 
-const { formatInfo, formatError, formatTotal } = require('./lib');
+const { formatInfo, formatError, formatSeparator, formatTotal } = require('./lib');
 const solutions = require('./src');
 
 
@@ -116,6 +116,6 @@ problems.sort((a, b) => a - b).forEach((problem) => {
 });
 
 if (problems.length > 1) {
-    console.log('------+-------------------+-----------------');
+    console.log(formatSeparator());
     console.log(formatTotal('Total', timeTotal, solvedTotal));
 }

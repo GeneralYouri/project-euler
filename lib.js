@@ -13,8 +13,10 @@ const formatError = ([problem, alternative], message) => {
     return `\x1b[31m${header}\x1b[0m | \x1b[31mSkip:\x1b[0m             | \x1b[31m${message}\x1b[0m`;
 };
 
+const formatSeparator = (char = '-') => `${char.repeat(8)}+${char.repeat(19)}+${char.repeat(17)}`;
+
 const formatTotal = (problem, time, solved) => {
-    const header = problem.toString().padEnd(5, ' ');
+    const header = problem.toString().padEnd(7, ' ');
     const timeStr = formatTime(time).slice(0, 8).padStart(8, ' ');
     const solvedStr = solved.toString().padStart(2, ' ');
     return `${header} | \x1b[38;5;240mTime:\x1b[0m ${timeStr} ms | \x1b[38;5;240mSolved:\x1b[0m ${solvedStr} / 635`;
@@ -33,6 +35,7 @@ const runSolution = (name, fn, input) => {
 module.exports = {
     formatInfo,
     formatError,
+    formatSeparator,
     formatTotal,
     runSolution,
 };
