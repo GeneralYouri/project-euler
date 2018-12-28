@@ -7,8 +7,12 @@ const getFactorCount = (n) => {
     let factors = 1;
     let remaining = n;
 
-    let primeIndex = 0;
+    while (!(remaining & 1)) {
+        remaining >>>= 1;
+        factors += 1;
+    }
 
+    let primeIndex = 1;
     while (remaining > 1) {
         const prime = primeList[primeIndex];
         let hits = 0;

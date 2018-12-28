@@ -21,10 +21,10 @@ This approach also lets you customize the problem input in a similar way, throug
 Per problem you'll find the following contents:
 - A problem README providing context on the problem as well as details and explanations about the used solution(s).
 - An `input.txt` file containing the default input to work with, as obtained via the official Project Euler website.
-- A main solution file containing the code to solve the problem in an abstract way, generally accepting any input values.
+- A main solution file containing the problem solution; if possible generic / abstract / accepting input.
 - Zero or more alternative solution files that approach and solve the problem in a different but still interesting way.
-- A test file for each (alternative) solution file that tests the code against various inputs/outputs.
-  These contain sample inputs/outputs from the official website, the official input also from the official website, and other input/output combinations of interest.
+- A test file for each (alternative) solution file that tests the code against various meaningful inputs/outputs.
+  These contain sample inputs/outputs from the official website, the official input also from the official website, and other interesting input/output combinations.
 
 ---
 
