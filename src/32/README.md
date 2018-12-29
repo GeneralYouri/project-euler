@@ -4,6 +4,8 @@ It's easy to realise that, while we're looking for 9-pandigitals, the actual num
 That's because we have to divide them over 3 numbers, one of which is the product of the other two.
 Additionally, because of the relation between the 3 numbers, we only have to iterate two of them and can then calculate the third.
 
+---
+
 We then look at limiting our search space for each of the numbers.
 Because of the product relation we're supposed to work with, we have a simple way to calculate an upper limit for the value of the multipliers.
 Given a digit count `n` the maximum length of a multiplier is `(n - 1) / 2`.
@@ -12,6 +14,8 @@ This then translates into a maximum value of 9999 for each multiplier.
 
 The minimum value for a multiplier is 2, since a 1 would result in the other two numbers to be identical.
 For odd values of `n` this lets us further reduce our upper limit by a factor 2, to 4999 for our problem input.
+
+---
 
 As per the problem description we need to count every unique product once even when it has multiple valid solutions.
 To do so we use a `Set` to keep track of these products, which gives us a unique value guarantee.

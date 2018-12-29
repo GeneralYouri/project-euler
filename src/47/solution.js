@@ -1,7 +1,7 @@
 const { isPrime, primeGenerator } = require('aoc-toolkit');
 
 module.exports = () => {
-    const primeList = [];
+    const primeList = [2, 3];
 
     const countDistinctPrimeFactors = (n) => {
         if (isPrime(n)) {
@@ -11,16 +11,16 @@ module.exports = () => {
         let count = 0;
         let remaining = n;
 
-        for (const prime of primeList) {
+        let i = 0;
+        while (remaining > 1) {
+            const prime = primeList[i];
             if (remaining % prime === 0) {
                 do {
                     remaining /= prime;
                 } while (remaining % prime === 0);
                 count += 1;
             }
-            if (remaining === 1) {
-                break;
-            }
+            i += 1;
         }
 
         return count;
@@ -29,9 +29,8 @@ module.exports = () => {
     const primes = primeGenerator();
     let prime = primes.next().value;
 
-    const lower = 2 * 3 * 5 * 7;
     let sequenceLength = 0;
-    for (let a = lower; true; a += 1) {
+    for (let a = 2; true; a += 1) {
         if (prime <= a) {
             primeList.push(prime);
             prime = primes.next().value;

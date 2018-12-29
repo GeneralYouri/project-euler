@@ -19,4 +19,3 @@ The problem input's answer doesn't contains any leading zeroes though, and the p
 The solution also accepts an optional second argument, which is the number of digits to return from the end of the sum.
 This is used in place of the 10 in the `1e10` modulo as described above.
 Also, besides a standard lower bounds check, this solution also features an upper bounds check to prevent exceeding `Number.MAX_SAFE_INTEGER`.
-
