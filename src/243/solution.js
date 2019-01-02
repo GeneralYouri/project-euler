@@ -46,7 +46,6 @@ module.exports = (input) => {
         const numerator = denominator - countMultiples(n, distinctPrimeFactors);
 
         const fraction = numerator * targetDenominator / denominator;
-        console.log(n, numerator, denominator, fraction);
         if (fraction < targetNumerator) {
             return n;
         }
