@@ -35,7 +35,7 @@ Per problem you'll find the following contents:
 - Initial solutions for problems 17, 19, 27, 32, 
 - Add new solutions / Improve existing solutions for problems 9, 12, 14, 20.1, 23, 28, 33, 43, 
 - Write tests for problems 14, 23, 
-- Write readme for problems 12, 14, 23, 
+- Write readme for problems 12, 14, 23, 60, 
 
 ---
 
