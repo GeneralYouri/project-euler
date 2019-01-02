@@ -11,8 +11,6 @@ module.exports = (input) => {
             r += 1;
         }
 
-        console.log(n, r, combs);
-
         if (combs > minimum) {
             count += n - 2 * r + 1;
         }

@@ -9,7 +9,6 @@ module.exports = (input) => {
         let x = n * n;
         while (x <= Number.MAX_SAFE_INTEGER) {
             if (digitSum(x) === n) {
-                console.log(x, n);
                 matches.add(x);
             }
             x *= n;
@@ -21,6 +20,5 @@ module.exports = (input) => {
     }
 
     const sequence = Array.from(matches).sort((a, b) => a - b);
-    console.log(sequence);
     return sequence[target - 1];
 };
