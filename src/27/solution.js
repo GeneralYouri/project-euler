@@ -16,7 +16,6 @@ module.exports = (input) => {
             if (n > bestCount) {
                 bestCount = n;
                 bestProduct = a * b;
-                console.log(a, b);
             }
         }
     }
