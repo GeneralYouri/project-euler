@@ -16,6 +16,6 @@ Since they started as matches, they will continue producing matches until at som
 
 ---
 
-To calculate the number of digits in a product, we calculate the log10 of that number.
-In fact, we don't actually need to calculate the numbers themselves, as just working with their log10 values is enough.
-This also ensures our numbers remain low enough to avoid floating point inaccuracies; although technically that doesn't matter for this specific problem (the inaccuracy doesn't get big enough to cause problems).
+When adding a power to a number, we also divide the result by 10.
+This lets us keep track of the number of digits; a result of between 1 and 10 indicates a match.
+Meanwhile it also keeps our numbers small and workable.
