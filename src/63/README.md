@@ -16,6 +16,8 @@ Since they started as matches, they will continue producing matches until at som
 
 ---
 
-When adding a power to a number, we also divide the result by 10.
-This lets us keep track of the number of digits; a result of between 1 and 10 indicates a match.
-Meanwhile it also keeps our numbers small and workable.
+Initially I was iterating powers, testing the digit count of the product using log10.
+Then I realized that I could simplify the calculations by also dividing by 10 for every power; matches are now produced until the product dips below 1.
+While working with the log10 values though, I realized that these values drop by a static amount for every power - namely the log10 of the base.
+When our log10 reaches 0, that means the product reaches 1 (which was our break condition).
+This lets us replace the power iteration with a formula to count the number of powers for which a base produces products with a digit count equal to the power.
