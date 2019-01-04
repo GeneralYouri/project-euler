@@ -9,5 +9,5 @@ test('Custom test cases', () => {
 });
 
 test('Problem input', () => {
-    expect(solution(defaultInput)).toBe(296962999629);
+    expect(solution(defaultInput)).toBe('296962999629');
 });
