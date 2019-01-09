@@ -42,8 +42,7 @@ const allowConsole = argv.console !== undefined ? argv.console : problems.length
 
 const runSolution = (problem, alternative, fn, input) => {
     if (!fn) {
-        console.log(formatError([problem, alternative], 'No solution yet'));
-        return false;
+        throw new Error('No solution yet');
     }
 
     // Temporarily suppress console.log
@@ -55,6 +54,15 @@ const runSolution = (problem, alternative, fn, input) => {
 
     const bindFn = fn.bind(null, ...input);
     const answer = bindFn();
+    if (answer === undefined) {
+        // Restore console.log
+        if (!allowConsole) {
+            console.log = oldLogger;
+        }
+
+        throw new Error('No solution yet');
+    }
+
     let time = 0;
     for (let run = 1; run <= argv.runs; run += 1) {
         // Run and time the solution
@@ -67,8 +75,7 @@ const runSolution = (problem, alternative, fn, input) => {
                 console.log = oldLogger;
             }
 
-            console.log(formatError([problem, alternative], error.message));
-            return false;
+            throw new Error(error.message);
         }
 
         const endTime = process.hrtime.bigint();
@@ -81,8 +88,7 @@ const runSolution = (problem, alternative, fn, input) => {
         console.log = oldLogger;
     }
 
-    console.log(formatInfo([problem, alternative], time, answer));
-    return time;
+    return [answer, time];
 };
 
 let timeTotal = 0;
@@ -105,8 +111,14 @@ problems.sort((a, b) => a - b).forEach((problem) => {
     }
 
     const fastest = alternatives.reduce((acc, fn, index) => {
-        const time = runSolution(problem, index, fn, input);
-        return (time !== false && time < acc) ? time : acc;
+        try {
+            const [answer, time] = runSolution(problem, index, fn, input);
+            console.log(formatInfo([problem, index], time, answer));
+            return (time < acc) ? time : acc;
+        } catch (error) {
+            console.log(formatError([problem, index], error.message));
+            return acc;
+        }
     }, Number.POSITIVE_INFINITY);
 
     if (fastest && fastest !== Number.POSITIVE_INFINITY) {

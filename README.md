@@ -31,9 +31,9 @@ Per problem you'll find the following contents:
 ### TODO
 
 - Extract Prime Factors / Divisors functionality from solutions 5.1, 12, 12.1, 21.1, 23, 29.1, 
-- Extract Factorial functionality from solutions 15, 24, 34, 
-- Initial solutions for problems 17, 40, 
-- Add new solutions / Improve existing solutions for problems 9, 12, 14, 20.1, 23, 28, 33, 43, 51, 
+- Extract Factorial functionality from solutions 15, 20, 24, 34, 
+- (Finish) Initial solutions for problems 17, 40, 70, 96, 160, 642, 650
+- Add new solutions / Improve existing solutions for problems 9, 12, 14, 20.1, 23, 28, 33, 43, 51, 60, 61, 70, 92, 206, 
 - Write tests for problems 14, 23, 
 - Write readme for problems 12, 14, 23, 51, 60, 
 

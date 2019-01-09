@@ -19,7 +19,7 @@ const formatTotal = (problem, time, solved) => {
     const header = problem.toString().padEnd(7, ' ');
     const timeStr = formatTime(time).slice(0, 8).padStart(8, ' ');
     const solvedStr = solved.toString().padStart(2, ' ');
-    return `${header} | \x1b[38;5;240mTime:\x1b[0m ${timeStr} ms | \x1b[38;5;240mSolved:\x1b[0m ${solvedStr} / 635`;
+    return `${header} | \x1b[38;5;240mTime:\x1b[0m ${timeStr} ms | \x1b[38;5;240mSolved:\x1b[0m ${solvedStr} / 650`;
 };
 
 const runSolution = (name, fn, input) => {
