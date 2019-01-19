@@ -1,17 +1,21 @@
+const { primeGeneratorLimit, getPrimeFactorsMap } = require('aoc-toolkit');
+
 module.exports = (boundA, boundB = boundA) => {
-    const limitA = BigInt(boundA);
-    const limitB = BigInt(boundB);
-    if (limitA < 2n || limitB < 2n) {
+    const limitA = Math.trunc(Number(boundA));
+    const limitB = Math.trunc(Number(boundB));
+    if (limitA < 2 || limitB < 2) {
         return undefined;
     }
 
-    const distinctTerms = new Set();
+    const primeList = primeGeneratorLimit(limitA);
 
-    for (let a = 2n; a <= limitA; a += 1n) {
-        for (let b = 2n; b <= limitB; b += 1n) {
-            distinctTerms.add(a ** b);
+    const distinctTerms = new Set();
+    for (let a = 2; a <= limitA; a += 1) {
+        const primeFactors = Array.from(getPrimeFactorsMap(a, primeList));
+        for (let b = 2; b <= limitB; b += 1) {
+            const hash = primeFactors.map(([prime, count]) => prime + ':' + (count * b)).join(',');
+            distinctTerms.add(hash);
         }
     }
-
     return distinctTerms.size;
 };

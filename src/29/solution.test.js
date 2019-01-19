@@ -8,7 +8,9 @@ test('Custom test cases', () => {
     expect(solution('-1')).toBeUndefined();
     expect(solution('0')).toBeUndefined();
     expect(solution('1')).toBeUndefined();
-    expect(solution('200')).toBe(37774);
+    expect(solution('1000')).toBe(977358);
+    expect(solution('10000', '10')).toBe(89477);
+    expect(solution('10', '10000')).toBe(74994);
 });
 
 test('Problem input', () => {
