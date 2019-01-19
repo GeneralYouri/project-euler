@@ -5,7 +5,19 @@ const { argv } = require('yargs')
             alias: ['problems', 'p'],
             array: true,
             default: [],
-            describe: 'The problem solution(s) to run',
+            describe: 'The problems for which to run solution(s)',
+        },
+        skip: {
+            alias: ['skips', 's'],
+            array: true,
+            default: [],
+            describe: 'The problems for which *not* to run solution(s)',
+        },
+        alts: {
+            alias: ['alternatives', 'a'],
+            type: 'boolean',
+            default: false,
+            describe: 'Whether or not alternative solutions should be run; the fastest solution will be counted',
         },
         input: {
             alias: ['inputs', 'i'],
@@ -20,12 +32,6 @@ const { argv } = require('yargs')
             default: 1,
             describe: 'How many times every solution should be run; the runtimes will be averaged',
         },
-        alts: {
-            alias: ['alternatives', 'a'],
-            type: 'boolean',
-            default: false,
-            describe: 'Whether or not alternative solutions should be run; the fastest solution will be counted',
-        },
         console: {
             alias: ['suppress-console', 'c'],
             type: 'boolean',
@@ -37,7 +43,7 @@ const { formatInfo, formatError, formatSeparator, formatTotal } = require('./lib
 const solutions = require('./src');
 
 
-const problems = argv.problem.length ? argv.problem : Object.keys(solutions);
+const problems = ((argv.problem.length > 0) ? argv.problem : Object.keys(solutions).map(Number)).filter(n => !argv.skip.includes(n));
 const allowConsole = argv.console !== undefined ? argv.console : problems.length <= 1;
 
 const runSolution = (problem, alternative, fn, input) => {
