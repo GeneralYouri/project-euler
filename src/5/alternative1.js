@@ -1,30 +1,4 @@
-const { primeGenerator } = require('aoc-toolkit');
-
-// Returns an array with all prime factors of n
-const getPrimeFactorsObject = (n) => {
-    const factors = {};
-    let remaining = n;
-
-    const primes = primeGenerator();
-    let prime = primes.next();
-
-    while (remaining > 1) {
-        let hits = 0;
-
-        while (remaining % prime.value === 0) {
-            hits += 1;
-            remaining /= prime.value;
-        }
-
-        if (hits > 0) {
-            factors[prime.value] = hits;
-        }
-
-        prime = primes.next();
-    }
-
-    return factors;
-};
+const { getPrimeFactorsMap } = require('aoc-toolkit');
 
 // Calculate the LCM for 1 .. input by combining the prime factors of every number in the range
 module.exports = (input) => {
@@ -35,12 +9,12 @@ module.exports = (input) => {
 
     // Calculate prime factors for 2..n
     const primeFactors = Array.from(Array(limit - 1)).map((_, index) => {
-        return getPrimeFactorsObject(index + 2);
+        return getPrimeFactorsMap(index + 2);
     });
 
     // Combine the prime factors into a factorization for the LCM
-    const lcmFactors = primeFactors.reduce((acc, factorObject) => {
-        Object.entries(factorObject).forEach(([factor, hits]) => {
+    const lcmFactors = primeFactors.reduce((acc, factorMap) => {
+        factorMap.forEach((hits, factor) => {
             acc[factor] = Math.max(acc[factor] || 0, hits);
         });
         return acc;

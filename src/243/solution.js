@@ -35,7 +35,7 @@ const countMultiples = (limit, values) => {
 module.exports = (input) => {
     const [targetNumerator, targetDenominator] = input.split('/').map(Number);
 
-    const distinctPrimeFactors = [];
+    const uniquePrimeFactors = [];
     const primes = primeGenerator();
     let prime = primes.next().value;
 
@@ -43,7 +43,7 @@ module.exports = (input) => {
     let nextDelta = delta * prime;
     for (let n = 1; true; n += delta) {
         const denominator = n - 1;
-        const numerator = denominator - countMultiples(n, distinctPrimeFactors);
+        const numerator = denominator - countMultiples(n, uniquePrimeFactors);
 
         const fraction = numerator * targetDenominator / denominator;
         if (fraction < targetNumerator) {
@@ -51,7 +51,7 @@ module.exports = (input) => {
         }
 
         if (n === nextDelta) {
-            distinctPrimeFactors.push(prime);
+            uniquePrimeFactors.push(prime);
             prime = primes.next().value;
 
             delta = nextDelta;

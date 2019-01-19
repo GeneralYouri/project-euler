@@ -23,4 +23,3 @@ This is one optimization I haven't yet fully explored.
   But they also have to be divided across three numbers, and I'm unsure how to do this.
 - For 4 numbers with 4 distinct prime factors things get even more tricky.
   I don't think my logic holds up regarding the requirement of 2 different prime factors (this would give 10 distinct prime factors divided over 4 numbers).
- 

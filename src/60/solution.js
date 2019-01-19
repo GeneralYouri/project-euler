@@ -27,7 +27,7 @@ module.exports = (input) => {
     let best = Number.POSITIVE_INFINITY;
     const addMatch = ([a, b, c, d, e]) => {
         const sum = a + b + c + d + e;
-        console.log(sum, a, b, c, d, e);
+        // console.log(sum, a, b, c, d, e);
         if (sum < best) {
             best = sum;
         }
@@ -69,7 +69,7 @@ module.exports = (input) => {
             primeList.push(prime);
             prime = primes.next().value;
         }
-        console.log('New limit', limit, primeList.length);
+        // console.log('New limit', limit, primeList.length);
 
         extendSet([], 0, 0);
     }
