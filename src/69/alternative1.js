@@ -25,7 +25,7 @@ module.exports = (input) => {
 
     const primes = primeGenerator();
     let prime = primes.next().value;
-    while (prime < limit) {
+    while (prime * prime < limit) {
         primeList.push(prime);
         prime = primes.next().value;
     }

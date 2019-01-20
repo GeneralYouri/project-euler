@@ -20,3 +20,4 @@ The one difference is that the 'closest' index can ofcourse also be the largest 
 
 The result is that we've reduced our iteration (for the problem input of 1000 there's almost 5k cycles) to a couple formulas.
 This gives us a drastic runtime improvement; what took a tenth of a second to calculate is now instant (<1ms).
+As this solution has easily the best performance of the three solutions discussed, it's included as the main solution.

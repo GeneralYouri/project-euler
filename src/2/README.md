@@ -26,7 +26,9 @@ Using this strategy we can not only skip all odd fibonacci numbers, we don't eve
 
 ---
 
-The alternative solution uses a fairly well-known formula for calculating the sum of the first n fibonacci numbers: `fibSum(n) = fib(n + 2) - 1`.
+*The above is implemented as the alternative solution, as the following explains a faster solution.*
+
+The main solution uses a fairly well-known formula for calculating the sum of the first n fibonacci numbers: `fibSum(n) = fib(n + 2) - 1`.
 By making some minor adjustments, we're able to use this formula for the sum of the first n even fibonacci numbers.
 
 Let's first compare the two sequences:

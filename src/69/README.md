@@ -1,6 +1,6 @@
 # [Problem 69](https://projecteuler.net/problem=69): Totient maximum
 
-Since we're dealing with Euler's Totient function here, I've gone ahead and implemented it.
+Since we're dealing with Euler's Totient function here (phi), I've gone ahead and implemented it.
 We will be iterating primes many times over, so `phi` uses a prime cache which is pre-filled with primes until the limit (1e6 as per problem input).
 What remains is a fairly simple process of iterating the search space, calculating the given function of `n / phi(n)`, and tracking the best result.
 

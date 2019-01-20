@@ -1,18 +1,25 @@
-const { createFibonacciGenerator } = require('aoc-toolkit');
+// Golden Ratio
+const Phi = (1 + Math.sqrt(5)) / 2;
 
-const fibonacciGenerator = createFibonacciGenerator(0n, 1n);
+// Binet's formula calculates the index of the Fibonacci number nearest to a given number n
+// For improved precision we instead accept a log10n, the log10 of n (so we assume Math.log10(n))
+const binet = log10n => Math.round((log10n + Math.log10(Math.sqrt(5))) / Math.log10(Phi));
+
+const getNthFibonacci = n => Math.round(Phi ** n / Math.sqrt(5));
 
 module.exports = (input) => {
-    const digitCount = Math.trunc(Number(input));
-    if (digitCount < 1) {
+    const log10n = Number(input) - 1;
+    if (log10n < 0) {
         return undefined;
     }
-
-    const fibonaccis = fibonacciGenerator();
-    let fibonacci = fibonaccis.next().value;
-    let index;
-    for (index = 1; fibonacci.toString().length < digitCount; index += 1) {
-        fibonacci = fibonaccis.next().value;
+    if (log10n === 0) {
+        return 1;
     }
-    return index;
+
+    let closestIndex = binet(log10n);
+    const closestFib = getNthFibonacci(closestIndex);
+    if (Math.log10(closestFib) < (log10n)) {
+        closestIndex += 1;
+    }
+    return closestIndex;
 };
