@@ -1,56 +1,78 @@
-const permutationsUnique = (permutationOptions) => {
-    if (permutationOptions.length <= 1) {
-        return [permutationOptions];
+const updateDigits = (allowedDigits, chosenDigit, chosenIndex) => {
+    if (!allowedDigits) {
+        return false;
     }
 
-    const permutations = [];
-    const smallerPermutations = permutationsUnique(permutationOptions.slice(1));
-    const firstOption = permutationOptions[0];
-
-    for (const smallerPermutation of smallerPermutations) {
-        for (let positionIndex = 0; positionIndex <= smallerPermutation.length; positionIndex += 1) {
-            const prefix = smallerPermutation.slice(0, positionIndex);
-            const suffix = smallerPermutation.slice(positionIndex);
-            permutations.push([...prefix, firstOption, ...suffix]);
+    let isValid = true;
+    const newAllowedDigits = allowedDigits.map((set, index) => {
+        const newSet = new Set(set);
+        newSet.delete(chosenDigit);
+        if (newSet.size === 0 && chosenIndex !== index) {
+            isValid = false;
         }
-    }
+        return newSet;
+    });
 
-    return permutations;
+    if (isValid) {
+        newAllowedDigits[chosenIndex] = new Set([chosenDigit]);
+        return newAllowedDigits;
+    }
+    return false;
 };
 
-const digitsToNumber = digits => digits.reduce((number, digit, index) => number + digit * 10 ** index, 0);
+const modulo = [1, 2, 3, 5, 7, 11, 13, 17];
 
-const isSubStringDivisible = (n, divisors, subLength) => {
-    const size = Math.floor(Math.log10(n)) + 1;
-    const limit = size - subLength + 1;
-    const mod = 10 ** subLength;
-    n /= 10 ** (size - subLength);
-    for (let i = 1; i <= limit; i += 1) {
-        const subString = Math.floor(n % mod + 0.0001);
-        const quotient = subString / divisors[i - 1];
-        if (Math.floor(quotient) !== quotient) {
-            return false;
+const recurse = (allowedDigits, candidate, digitIndex) => {
+    const mod = modulo[digitIndex];
+    const divisor = 10 ** (modulo.length - 1 - digitIndex);
+    const multiplier = divisor * 100;
+
+    if (digitIndex === 0) {
+        const lastDigit = Array.from(allowedDigits[0])[0];
+        if (lastDigit === undefined || lastDigit === 0) {
+            return [];
         }
-        n *= 10;
+        return [multiplier * lastDigit + candidate];
     }
-    return true;
+
+    const matches = [];
+    for (const newDigit of allowedDigits[digitIndex].values()) {
+        const newAllowedDigits = updateDigits(allowedDigits, newDigit, digitIndex);
+        if (!newAllowedDigits) {
+            continue;
+        }
+
+        const newCandidate = multiplier * newDigit + candidate;
+        if (Math.floor(newCandidate / divisor) % mod === 0) {
+            const subMatches = recurse(newAllowedDigits, newCandidate, digitIndex - 1);
+            matches.push(...subMatches);
+        }
+    }
+    return matches;
 };
 
 module.exports = () => {
-    const digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-    const divisors = [1, 2, 3, 5, 7, 11, 13, 17];
-    const subStringLength = 3;
+    const allDigits = new Set([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    const baseDigits = Array.from(Array(10)).map(() => new Set(allDigits));
+
+    // For divisors 2 and 5 we can prefilter the allowed digits
+    baseDigits[3] = new Set(Array.from(baseDigits[3]).filter(x => x % 2 === 0));
+    baseDigits[5] = new Set(Array.from(baseDigits[5]).filter(x => x % 5 === 0));
 
     let sum = 0;
-    const permutations = permutationsUnique(digits);
-    for (const permutation of permutations) {
-        const candidate = digitsToNumber(permutation);
-        if (candidate < 1e9) {
+    for (let multipleOf17 = Math.ceil(100 / 17) * 17; multipleOf17 < 1000; multipleOf17 += 17) {
+        const digits = multipleOf17.toString().split('').map(Number);
+        if (new Set(digits).size !== digits.length) {
             continue;
         }
-        if (isSubStringDivisible(candidate, divisors, subStringLength)) {
-            sum += candidate;
+
+        const allowedDigits = updateDigits(updateDigits(updateDigits(baseDigits, digits[2], 9), digits[1], 8), digits[0], 7);
+        if (!allowedDigits) {
+            continue;
         }
+
+        const matches = recurse(allowedDigits, multipleOf17, 6);
+        sum += matches.reduce((acc, m) => acc + m, 0);
     }
     return sum;
 };

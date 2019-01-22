@@ -17,13 +17,22 @@ As it turns out, the generation of permutations is by far the most expensive par
 
 ---
 
-[TODO] An alternative solution that incrementally builds up a number out of digits that match the division requirement.
-For example, we can start by iterating the multiples of 17 between 100 and 999 (so from 102 to 986).
-For those 3-digit numbers that have 3 distinct digits, we then have a limited number of digits to add to create a 4-digit number.
-For each of these we again have to verify the divisibility, with 13 this time.
-We can repeat this process recursively until our 10 digit numbers are created.
+### Update
 
-This approach is much faster because the vast majority of candidate numbers are never even calculated.
-For example, if we only apply the first part of this logic, where we iterate multiples of 17, that gives only 53 3-digit numbers.
-For each of these we could generate permutations of the remaining 7 digits, giving 5,040 results each.
-That would already shrink our search space from 3,628,800 numbers to just 519,120 (= 53 * 5,040); roughly a factor 7.
+*A new main solution has been added, pushing the above solution into alternative 1.*
+
+The new solution drastically improves runtime by using almost zero string manipulation, as well as canceling early when possible.
+The main idea is to iteratively build up candidate numbers one digit at a time.
+Every time we add a new digit we can immediately check for that digit's substring divisibility, and cancel this candidate early if it fails.
+
+---
+
+First we need to do some work pre-iteration by listing all allowed digits for every index of the 10-digit number we're creating.
+We can also immediately discard some options for the indices related to the substring-divisibility checks that divide by 2 (only even numbers) and 5 (only 0 and 5).
+Next the creation of our candidates is started by first iterating all multiples of 17, the highest substring divisor which thus generates the fewest 3-digit options.
+Multiples of 17 are only allowed if they also use 3 unique digits and if they don't make future digits impossible (those with divisors 2 and 5, as they start with limited options).
+
+For each of the remaining multiples of 17 we then recursively try to add new digits one at a time.
+During this recursion we take our candidate so far, and try to add each of the allowed digits for our next index.
+For each of these we verify the substring-divisibility, and again make sure we don't make any future digits impossible (those with divisors 2 and 5, as they start with limited options)..
+Only when these conditions hold do we recurse, to try and add another digit, etc. until a valid 0-9 pandigital is formed.
