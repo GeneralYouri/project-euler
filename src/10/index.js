@@ -1,10 +1,9 @@
 const { readFileSync } = require('fs');
 const { runSolution } = require('./../../lib');
 const solution = require('./solution');
-const alternative1 = require('./alternative1');
 
 const defaultInput = readFileSync(require.resolve('./input.txt'), { encoding: 'UTF-8' });
-module.exports = { solution, alternative1, defaultInput };
+module.exports = { solution, defaultInput };
 
 if (module === require.main) {
     let input = process.argv.slice(2);
@@ -13,5 +12,4 @@ if (module === require.main) {
     }
 
     runSolution('Main solution', solution, input);
-    runSolution('Alternative 1', alternative1, input);
 }
