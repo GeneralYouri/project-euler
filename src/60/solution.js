@@ -1,77 +1,135 @@
-const { isPrime, primeGenerator } = require('aoc-toolkit');
+const { primeGenerator } = require('aoc-toolkit');
 
 const concatNumber = (a, b) => {
-    let x = 1;
-    let rest = b;
-    while (rest > 1) {
-        x *= 10;
-        rest /= 10;
+    let multiplier = 1;
+    while (multiplier < b) {
+        multiplier *= 10;
     }
-    return a * x + b;
+    return a * multiplier + b;
 };
 
-const isPrimePair = (p, q) => isPrime(concatNumber(p, q)) && isPrime(concatNumber(q, p));
+// c = (b^e) % m
+const powMod = (a, b, m) => {
+    if (m === 1) {
+        return 0;
+    }
+
+    let c = 1;
+    a %= m;
+    while (b > 0) {
+        if ((b & 1) === 1) {
+            c = (c * a) % m;
+        }
+        a = (a * a) % m;
+        b >>= 1;
+    }
+    return c;
+};
+
+const A = [2, 7, 61];
+const isPrime = (n) => {
+    if (n < 3) {
+        return n === 2;
+    }
+
+    let r = 0;
+    let d = n - 1;
+    let newD = Math.trunc(d / 2);
+    while (newD * newD === d) {
+        r += 1;
+        d = newD;
+        newD = Math.trunc(d / 2);
+    }
+
+    for (const a of A) {
+        let x = powMod(a, d, n);
+        if (x === 1 || x === n - 1) {
+            continue;
+        }
+
+        let finished = true;
+        for (let i = 0; i < r - 1; i += 1) {
+            x = (x * x) % n;
+            if (x === n - 1) {
+                finished = false;
+                break;
+            }
+        }
+        if (finished) {
+            return false;
+        }
+    }
+    return true;
+};
 
 module.exports = (input) => {
     const targetCount = Math.trunc(Number(input));
 
-    // Allow pregeneration of primes, but exclude 2 and 5 as they can't ever form a concatenation pair with another prime
-    const primeList = [3];
-    const primes = primeGenerator();
-    let prime = primes.next().value;
-    prime = primes.next().value;
-    prime = primes.next().value;
-    prime = primes.next().value;
+    const primeList = [];
+    const primePairs = [];
 
-    const primePairCache = new Map();
     let best = Number.POSITIVE_INFINITY;
-    const addMatch = ([a, b, c, d, e]) => {
-        const sum = a + b + c + d + e;
-        // console.log(sum, a, b, c, d, e);
-        if (sum < best) {
-            best = sum;
-        }
-    };
 
-    const extendSet = (set, setSum, minimum) => {
+    const extendSet = (set, setSum, minimum, limit) => {
         for (let i = minimum; i < primeList.length; i += 1) {
             const p = primeList[i];
+
             const newSum = setSum + p;
-            if (best < Number.POSITIVE_INFINITY && newSum >= best) {
+            if (newSum >= best) {
                 break;
             }
 
-            const pairs = set.map(q => [p, q, p * q]);
-            pairs.forEach(([x, y, hash]) => {
-                if (!primePairCache.has(hash)) {
-                    primePairCache.set(hash, isPrimePair(x, y));
-                }
-            });
-            if (pairs.some(([x, y, hash]) => !primePairCache.get(hash))) {
+            let isValid = true;
+            /* eslint-disable-next-line no-cond-assign */
+            for (let j = 0; j < set.length && (isValid = primePairs[i][set[j]]); j += 1);
+            if (!isValid) {
                 continue;
             }
+            // More elegant, but slower :(
+            // if (!set.every(j => primePairs[i][j])) {
+            //     continue;
+            // }
 
-            const newSet = [...set, p];
-            if (newSet.length === targetCount) {
-                addMatch(newSet);
-                continue;
+            const newSet = [...set, i];
+            if (newSet.length < targetCount) {
+                const newBest = extendSet(newSet, newSum, i + 1, limit);
+                if (newBest) {
+                    return newBest;
+                }
+            } else if (newSum < best) {
+                return newSum;
             }
-            extendSet(newSet, newSum, i + 1);
         }
+        return false;
     };
 
     // Iteratively increase our search space (and pregenerate the new primes)
-    for (let limit = 100; limit !== best * 10; limit *= 10) {
+    const primes = primeGenerator();
+    let p = primes.next().value;
+    for (let limit = 1000; limit < best * 10; limit *= 10) {
         if (limit > best) {
             limit = best;
         }
-        while (prime < limit) {
-            primeList.push(prime);
-            prime = primes.next().value;
-        }
-        // console.log('New limit', limit, primeList.length);
 
-        extendSet([], 0, 0);
+        while (p < limit) {
+            const allowedPartners = [];
+            for (let j = 0; j < primeList.length; j += 1) {
+                const q = primeList[j];
+                if (best !== Number.POSITIVE_INFINITY && p + q >= best) {
+                    break;
+                }
+                allowedPartners.push(isPrime(concatNumber(p, q)) && isPrime(concatNumber(q, p)));
+            }
+            primePairs.push(allowedPartners);
+            primeList.push(p);
+            p = primes.next().value;
+        }
+        // console.log('New limit', limit, primeList.length, Math.trunc(process.memoryUsage().heapUsed / 1024 / 1024), 'MB');
+
+        const newBest = extendSet([], 0, 0, limit);
+        if (newBest) {
+            best = newBest;
+        }
     }
 
     return best;
