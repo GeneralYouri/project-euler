@@ -1,14 +1,17 @@
 const { isPrime, primeGenerator } = require('aoc-toolkit');
 
 const getTruncatables = (n) => {
-    const str = n.toString();
-    const ltr = Array.from(Array(str.length)).map((_, index) => str.slice(index));
-    const rtl = Array.from(Array(str.length)).map((_, index) => str.slice(0, index + 1));
-    return [...ltr, ...rtl];
+    const result = [];
+    for (let m = 10; m < n; m *= 10) {
+        result.push(n % m, Math.trunc(n / m));
+    }
+    return result;
 };
 
 module.exports = () => {
     const primes = primeGenerator();
+
+    // Skip single-digit primes
     for (let i = 0; i < 4; i += 1) {
         primes.next();
     }
@@ -16,15 +19,25 @@ module.exports = () => {
     let sum = 0;
     let count = 0;
 
+    let prime;
+    let modulo = 10;
+    let nextModulo = 100;
+
     do {
-        const prime = primes.next().value;
+        prime = primes.next().value;
+        if (prime > nextModulo) {
+            modulo = nextModulo;
+            nextModulo *= 10;
+        }
+
         if (/[4680]/g.test(prime)) {
             continue;
         }
+        if (/[25]/g.test(prime % modulo)) {
+            continue;
+        }
 
-        const truncatedSet = new Set(getTruncatables(prime));
-        truncatedSet.delete(prime);
-        const truncated = Array.from(truncatedSet).map(Number);
+        const truncated = Array.from(new Set(getTruncatables(prime)));
         if (truncated.every(isPrime)) {
             sum += prime;
             count += 1;
