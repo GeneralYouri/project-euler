@@ -17,8 +17,12 @@ It's easy to see that larger values of `n` can produce larger matches.
 So what we're really looking for is the value of `n` that generates at least 1 match, and then whichever of these matches is largest.
 This leads to a slight optimization where we iterate our `n` values from high to low, allowing an early return after the first `n` to generate matches.
 
-Curiously there are only two values of `n` that generate any matches at all: 4 and 7.
-With our problem input of 9 that means we still have to test all permutations for `n` equals 9, 8, and 7.
-Higher values of `n` lead to a significantly higher numbers of permutations to test.
-This means that for our problem input this unfortunately leads to barely any speedup.
-For an input like `n=7` the speedup would be more significant, but at those low values the total runtime itself isn't significant any more.
+There's an interesting little fact regarding digit sums that we can use here:
+>A number is divisible by 3 if and only if the digit sum of the number is divisible by 3.
+
+This curious little fact is extremely useful to us, because we know what the digit sums will be for all of our candidates, due to the pandigital requirement.
+Since we're looking for primes, we can entirely skip any `n` for which the digit sum is divisible by 3, as that means it contains a prime factor 3 and thus isn't prime itself.
+Listing out the digit sums for all integers up to `n` (our problem input is 9), shows us that only `n=7` and `n=4` produce digit sums *not* divisible by 3.
+
+So it suffices to first test all 7-digit 1-7 pandigital numbers for primality, and if no match is found also test 4-digit 1-4 pandigital numbers.
+As it turns out there exist multiple 7-digit 1-7 pandigital primes, and we find the answer in very few iterations this way.

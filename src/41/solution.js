@@ -22,22 +22,29 @@ const permutationsUnique = (permutationOptions) => {
 
 const digitsToNumber = digits => digits.reduce((number, digit, index) => number + digit * 10 ** index, 0);
 
+const iterate = (digits) => {
+    let largest = 0;
+    const permutations = permutationsUnique(digits);
+    for (const permutation of permutations) {
+        const candidate = digitsToNumber(permutation);
+        if (isPrime(candidate) && candidate > largest) {
+            largest = candidate;
+        }
+    }
+    return largest;
+};
+
 module.exports = (input) => {
     const limit = Math.trunc(Number(input));
-    const digits = Array.from(new Array(limit)).map((_, i) => i + 1);
-    let largest = 0;
-    for (let n = limit; n >= 1; n -= 1) {
-        const permutations = permutationsUnique(digits);
-        for (const permutation of permutations) {
-            const candidate = digitsToNumber(permutation);
-            if (isPrime(candidate) && candidate > largest) {
-                largest = candidate;
-            }
+
+    if (limit >= 7) {
+        const largest7 = iterate([1, 2, 3, 4, 5, 6, 7]);
+        if (largest7 > 0) {
+            return largest7;
         }
-        if (largest) {
-            return largest;
-        }
-        digits.pop();
     }
-    return undefined;
+    if (limit >= 7) {
+        return iterate([1, 2, 3, 4]);
+    }
+    return 0;
 };
