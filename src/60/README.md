@@ -36,10 +36,15 @@ To concatenate two primes we can gain a decent speedup by avoiding string operat
 Instead, to concatenate `a` and `b`, we take a new number `m = 1`, and multiply it by 10 as long as `m < b`.
 Then we can simply return `a * m + b` as the concatenation of `a` and `b`.
 
-Specially for this problem, because with all of the above runtime was still too long, I've written an improved primality test algorithm.
+Specially for this problem, because with all of the above runtime was still too long, I've written an alternative primality test algorithm.
 This algorithm implements the [Miller-Rabin primality test](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test), using [Modular Exponentiation by Repeated Squaring](https://en.wikipedia.org/wiki/Modular_exponentiation#Right-to-left_binary_method).
 This essentially lets us drastically reduce the number of operations needed to test for primality.
 According to the linked wiki articles, runtime of this Miller-Rabin test is `O(k * log(n)^3)`, where `n` is the number we're testing (which for our solution can reach almost 1e9).
 The other variable `k` is the number of values used by Miller-Rabin.
 For these values there are specific presets depending on how small you expect `n` to be (again see wiki).
 We're using `if n < 4,759,123,141, it is enough to test a = 2, 7, and 61;`, with `2, 7, 61` being the three values to test with, so `k = 3`.
+
+Unfortunately due to JS Number limitations, this algorithm can only be used for values below `Math.sqrt(Number.MAX_SAFE_INTEGER)`.
+This is just barely right for finding the answer here, but it's not sufficient for verifying whether the answer is truly the best possible answer.
+I still can't really find a good strategy to handle that last bit, and really the problem was never designed with that in mind.
+For those reasons I've dropped that part of the solution for now, and we're simply returning the first solution found.
