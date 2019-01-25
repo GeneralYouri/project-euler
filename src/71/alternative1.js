@@ -1,5 +1,8 @@
 module.exports = (input) => {
     const limit = Math.trunc(Number(input));
+    if (limit < 3) {
+        return undefined;
+    }
 
     const target = 3 / 7;
     let bestDiff = Number.POSITIVE_INFINITY;
