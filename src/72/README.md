@@ -1,4 +1,4 @@
-# [Problem 71](https://projecteuler.net/problem=71): Ordered fractions
+# [Problem 72](https://projecteuler.net/problem=72): Counting fractions
 
 For this problem we take a closer look at the definition of a Resilient Fraction:
 >If n<d and HCF(n,d)=1, it is called a reduced proper fraction.
