@@ -44,5 +44,5 @@ module.exports = (input) => {
         x += dx;
         y += dy;
     }
-    return count;
+    return count.toString();
 };

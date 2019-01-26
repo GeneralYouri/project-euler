@@ -9,16 +9,16 @@ const matchesMask = (n) => {
 };
 
 module.exports = () => {
-    const lower = 101010101n;
-    const upper = 138902662n;
+    const lower = 101010101;
+    const upper = 138902662;
 
-    const deltas = [2n, 6n];
-    for (let n = lower; n <= upper; n += 10n) {
+    const deltas = [2, 6];
+    for (let n = lower; n <= upper; n += 10) {
         for (const delta of deltas) {
             const candidate = (n + delta);
-            const square = candidate ** 2n;
+            const square = BigInt(candidate) ** 2n;
             if (matchesMask(square)) {
-                return candidate * 10n;
+                return candidate * 10;
             }
         }
     }
