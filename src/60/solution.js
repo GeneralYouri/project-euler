@@ -49,9 +49,14 @@ module.exports = (input) => {
         return false;
     };
 
-    // Iteratively increase our search space (and pregenerate the new primes)
+    // Skip the primes 2 and 5 as they can't concatenate with anything to form a new prime
     const primes = primeGenerator();
-    let p = primes.next().value;
+    primes.next();
+    primes.next();
+    primes.next();
+    let p = 3;
+
+    // Iteratively increase our search space (and pregenerate the new primes)
     for (let limit = 1000; /* limit < best * 10 */; limit *= 10) {
         // if (limit > best) {
         //     limit = best;

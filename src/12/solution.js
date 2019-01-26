@@ -2,14 +2,14 @@ const { primeGenerator, triangularGenerator } = require('aoc-toolkit');
 
 const primeList = [];
 
-// Returns an array with all prime factors of n
-const getFactorCount = (n) => {
-    let factors = 1;
+// Returns the number of divisors of n
+const countDivisors = (n) => {
+    let divisors = 1;
     let remaining = n;
 
     while (!(remaining & 1)) {
         remaining >>>= 1;
-        factors += 1;
+        divisors += 1;
     }
 
     let primeIndex = 1;
@@ -23,13 +23,13 @@ const getFactorCount = (n) => {
         }
 
         if (hits > 0) {
-            factors *= hits + 1;
+            divisors *= hits + 1;
         }
 
         primeIndex += 1;
     }
 
-    return factors;
+    return divisors;
 };
 
 // TODO: Write readme
@@ -42,27 +42,27 @@ module.exports = (input) => {
     }
 
     const triangulars = triangularGenerator();
-    let triangular = triangulars.next();
+    let triangular = triangulars.next().value;
 
     // Since half of a number's divisors are below the number's sqrt, we can skip the very small numbers
-    while (triangular.value < minimum) {
-        triangular = triangulars.next();
+    while (triangular < minimum) {
+        triangular = triangulars.next().value;
     }
 
-    // Generate a list of primes as needed by getFactorCount, until 4 * minimum, which seems to always be sufficient
+    // Generate a list of primes as needed by countDivisors, until 4 * minimum, which seems to always be sufficient
     const primes = primeGenerator();
-    let prime = primes.next();
-    while (prime.value < 4 * minimum) {
-        primeList.push(prime.value);
-        prime = primes.next();
+    let prime = primes.next().value;
+    while (prime < 4 * minimum) {
+        primeList.push(prime);
+        prime = primes.next().value;
     }
 
     // Calculate the divisors until we find the first triangular with a sufficient divider count
-    let divisors = getFactorCount(triangular.value);
+    let divisors = countDivisors(triangular);
     while (divisors <= minCount) {
-        triangular = triangulars.next();
-        divisors = getFactorCount(triangular.value);
+        triangular = triangulars.next().value;
+        divisors = countDivisors(triangular);
     }
 
-    return triangular.value;
+    return triangular;
 };

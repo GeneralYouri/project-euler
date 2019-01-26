@@ -7,11 +7,8 @@ module.exports = (input) => {
     }
 
     const primes = primeGenerator();
-    let prime;
-
-    for (let index = 0; index < targetIndex; index += 1) {
-        prime = primes.next();
+    for (let index = 1; index < targetIndex; index += 1) {
+        primes.next();
     }
-
-    return prime.value;
+    return primes.next().value;
 };

@@ -9,7 +9,7 @@ module.exports = (input) => {
     const upper11Mod = Math.trunc(upperBound / 11) * 11;
 
     for (let n = upperBound; n >= lowerBound; n -= 1) {
-        const palindrome = Number(('' + n) + ('' + n).split('').reverse().join(''));
+        const palindrome = Number(n.toString() + n.toString().split('').reverse().join(''));
 
         for (let divisor1 = upper11Mod; divisor1 >= lowerBound; divisor1 -= 11) {
             const divisor2 = palindrome / divisor1;

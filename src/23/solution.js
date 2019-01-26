@@ -42,26 +42,25 @@ const isAbundant = n => getDivisorSum(n) > n;
 // Likewise, the highest positive multiple of 5 that can't be written as the sum of two abundant numbers, is 1555
 // Both of these are vastly lower than the highest number overall that can't be written as the sum of two abundant numbers, which is 20161
 module.exports = () => {
+    const limit = 28123;
+
     // Find all abundant numbers up to 28123
-    const abundantMap = {};
-    for (let n = 12; n < 28123; n += 2) {
+    const abundants = new Set();
+    for (let n = 12; n <= limit; n += 2) {
         if (isAbundant(n)) {
-            abundantMap[n] = true;
+            abundants.add(n);
         }
     }
-    for (let n = 15; n < 28123; n += 30) {
+    for (let n = 15; n <= limit; n += 30) {
         if (isAbundant(n)) {
-            abundantMap[n] = true;
+            abundants.add(n);
         }
     }
 
-    const abundants = Object.keys(abundantMap).map(Number);
-    // console.log(abundants[abundants.length - 1]);
-    const candidates = Array.from(Array(28123 + 1)).fill(true);
-
+    const candidates = Array.from(Array(limit + 1)).fill(true);
     for (const n1 of abundants) {
         for (const n2 of abundants) {
-            if (n1 + n2 > 28123) {
+            if (n1 + n2 > limit) {
                 break;
             }
             if (candidates[n1 + n2]) {
@@ -70,13 +69,7 @@ module.exports = () => {
         }
     }
 
-    // console.log(getDivisors(20161));
-    // console.log(candidates.lastIndexOf(true, 20160));
-    // console.log(getDivisorSum(24), getDivisorSum(318), getDivisorSum(312));
     return candidates.reduce((acc, isCandidate, abundant) => {
-        // if (isCandidate) {
-        //     console.log(abundant, getDivisors(abundant));
-        // }
         return acc + (isCandidate ? abundant : 0);
     }, 0);
 };

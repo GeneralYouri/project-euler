@@ -21,6 +21,7 @@ module.exports = (input) => {
 
     const primes = primeGenerator();
     let prime = primes.next().value;
+
     // The only two primes that don't end on 1/3/7/9 are 2 and 5, both of which are single digits and thus circular by nature
     let circularCount = 0;
     if (limit > 2) {

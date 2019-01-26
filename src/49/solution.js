@@ -1,9 +1,9 @@
-const { primeGenerator } = require('aoc-toolkit');
+const { isPrimeWheel30, primeGenerator } = require('aoc-toolkit');
 
 const hash = n => n.toString().split('').sort().join('');
 
 module.exports = () => {
-    const primes = primeGenerator();
+    const primes = primeGenerator(isPrimeWheel30);
     let prime = primes.next().value;
     while (prime < 1000) {
         prime = primes.next().value;
