@@ -1,58 +1,38 @@
-const { triangularGenerator } = require('aoc-toolkit');
-
-// const getDivisors = (n) => {
-//     const sqrt = Math.sqrt(n);
-//     const divisors = [];
-//     const mirrors = [];
-//
-//     const di = n % 2 + 1;
-//     for (let i = 1; i <= sqrt; i += di) {
-//         const div = n / i;
-//         if (Math.trunc(div) * i === n) {
-//             divisors.push(i);
-//             mirrors.push(div);
-//         }
-//     }
-//
-//     return [...divisors, ...mirrors.reverse()];
-// };
-
-const getDividerCount = (n) => {
-    const sqrt = Math.trunc(Math.sqrt(n));
-    let dividerCount = 0;
-
-    const di = n % 2 + 1;
-    for (let i = 1; i <= sqrt; i += di) {
-        const div = n / i;
-        if (Math.trunc(div) * i === n) {
-            dividerCount += 2;
-        }
-    }
-
-    if (sqrt * sqrt === n) {
-        dividerCount -= 1;
-    }
-
-    return dividerCount;
-};
+const { primeGenerator, getDivisorCount, triangularGenerator } = require('aoc-toolkit');
 
 module.exports = (input) => {
-    const dividerCount = Math.trunc(Number(input));
-    const minimum = (dividerCount / 2) ** 2;
-    if (dividerCount < 0) {
+    const minCount = Math.trunc(Number(input));
+    const minimum = (minCount / 2) ** 2;
+    if (minCount < 0) {
         return undefined;
     }
 
     const triangulars = triangularGenerator();
-    let triangular = triangulars.next();
+    let triangular = triangulars.next().value;
 
-    while (triangular.value < minimum) {
-        triangular = triangulars.next();
+    // Since half of a number's divisors are below the number's sqrt, we can skip the very small numbers
+    for (let i = 2; triangular < minimum; i += 1) {
+        triangular = triangulars.next().value;
     }
 
-    while (getDividerCount(triangular.value) <= dividerCount) {
-        triangular = triangulars.next();
+    // Generate a list of primes as needed by getDivisorCount, as many as we may need
+    const primeList = [];
+    const primes = primeGenerator();
+    primeList.push(primes.next().value);
+    primeList.push(primes.next().value);
+    let prime = primes.next().value;
+    while (prime <= minCount + 1) {
+        primeList.push(prime);
+        prime = primes.next().value;
+    }
+    primeList.push(prime);
+
+    // Calculate the divisors until we find the first triangular with a sufficient divider count
+    let divisors = getDivisorCount(triangular, primeList);
+    while (divisors <= minCount) {
+        triangular = triangulars.next().value;
+        divisors = getDivisorCount(triangular, primeList);
     }
 
-    return triangular.value;
+    return triangular;
 };
