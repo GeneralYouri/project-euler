@@ -33,7 +33,7 @@ Sequence \ Index|  1|  2|  3|  4|  5|  6|  7|  8|  9| 10|
 5 Pentagonal    |  1|  5| 12| 22| 35| 51| 70| 92|117|145|
 6 Hexagonal     |  1|  6| 15| 28| 45| 66| 91|120|153|190|
 
-Note how every odd triangular is also hexagonal; infact, and more importantly, every hexagonal is also triangular.
+Note how every odd triangular is also hexagonal; infact (and more importantly) every hexagonal is also triangular.
 We'd already like to iterate hexagonals, because they grow the fastest out of the three sequences we need to consider.
 But with this knowledge, we can now ignore checking triangulars entirely.
 Furthermore, this also gives us boundaries for pentagonals: they grow slower than hexagonals but faster than triangulars.
@@ -45,3 +45,7 @@ To find a match we iterate hexagonals while at the same time iterating pentagona
 To return the problem answer we need the 3rd number that is a member to all three relevant sequences (2nd is given 40755, but 1st is 1!).
 This is done by accepting a minimum index in the hexagonal sequence at which to start the search (143 for the problem input).
 The sequence of numbers that appear in all three sequences seems to grow very fast, as our answer is almost the square of the previous number in the sequence.
+
+**Edit:** As it turns out, it is computationally faster to check whether a given hexagonal is pentagonal, rather than the double iteration described above.
+Additionally, it should be possible to find the answer using a formula, requiring no iteration whatsoever.
+This is not implemented here, but more information can be found at [Wolfram's MathWorld](http://mathworld.wolfram.com/HexagonalPentagonalNumber.html).
