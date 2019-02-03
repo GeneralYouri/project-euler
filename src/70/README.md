@@ -40,5 +40,47 @@ Finally, you can notice a general trend that `n / phi(n)` gets lower as `n` gets
 This makes sense, since the prime density also lowers (and from this I'm assuming the level of prime-likeness decreases with it).
 So by searching from high to low we generally have to go through fewer improvements to our current best value before hitting the actual best value, skipping some extra computation.
 
-Unfortunately, even after all of the above is implemented, the runtime for the problem input is still around 2 seconds.
+Unfortunately, even after all of the above is implemented, the runtime for the problem input is still around 1.6 seconds.
 Compared to most other problems around this number that seems like a fairly high runtime, so there may well be a better solution strategy altogether.
+
+---
+
+### Refactor
+
+As noted above, there are indeed several good ways to vastly improve our algorithm; we even got very close to discovering some of these initially.
+The above solution is now implemented as alternative solution 1, while a new main solution has been added.
+We base this solution on a continuation of some of our findings above, namely those regarding prime-like numbers.
+We'll be looking for the best candidate comprised of two unique prime factors to the first power: `n = p * q`.
+The main difference is that instead of iterating values for `n`, we iterate for `p` and `q`.
+Doing so opens the door to many other optimizations.
+
+For a number `n = p * q` with `p > q` we can guarantee `p > sqrt(n) > q`.
+Our first step is to take advantage of this and generate primes until `sqrt(n)` which will be used later as candidates for `q`.
+Then a second loop starts to iterate primes above `sqrt(n)` as candidates for `p`.
+Since we're looking for high `n`, for every `p` we iterate values for `q` in decreasing order.
+
+Because we still want to try and maximize `n`, it suffices to iterate `q` until `p * q < bestN`.
+This also means that for every `p` we'll find at most 1 improvement, after which we continue to the next `p`.
+Meanwhile at the start of the `q` iteration (inner loop) we may find `p * q > limit`, in which case we skip that `q`.
+But because `p` is strictly increasing, that specific `q` will now always produce `p * q > limit`, so we remove it from the `q` candidates.
+
+Additionally we can re-apply our lower limit check from the old solution, this time as an early break in our outer loop.
+We don't have to calculate the lowest prime factor anymore, that's now `q` by definition.
+We also iterate `q` in decreasing order, meaning the best chances come from the highest `q`.
+So for our early break we take the highest `q` candidate and break when `1 + 1 / (factor - 1)` can't beat our best result.
+
+---
+
+Finally, there is an improvement on the permutation test, for which we take another look at `phi`.
+`phi(n)` counts all numbers up to `n`, excluding all multiples of any of the prime factors of `n`.
+Normally care must be taken to avoid counting numbers twice, when they're a multiple of more than one prime factor.
+But since we define `n = p * q` and `p > q`, we can guarantee that the only number being counted twice is `n` itself.
+This means that we can simplify to `phi(n) = n - (p + q - 1)`.
+
+When testing for permutation, we compare `n` and `phi(n)`.
+Due to the above simplification, the difference can be easily seen to be `p + q - 1`.
+For two numbers `a` and `b` to be permutations of each other, it's a proven fact that their difference must be a multiple of 9.
+So, before performing a permutation test using stringification and character sorting, we test whether `(p + q) % 9 === 1` holds, which is much cheaper.
+
+All together the result is a new main solution with a runtime of around 12ms, over 100 times faster than our old solution.
+The new solution also scales very well; handling inputs of up to `1e13` within a second, and being capable of solving even up to `Number.MAX_SAFE_INTEGER`.

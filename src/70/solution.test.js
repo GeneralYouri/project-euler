@@ -7,8 +7,9 @@ test('Provided test cases', () => {
 test('Custom test cases', () => {
     expect(solution('-1')).toBeUndefined();
     expect(solution('0')).toBeUndefined();
-    expect(solution('20617')).toBeUndefined();
-    expect(solution('20618')).toBe(20617);
+    expect(solution('291')).toBeUndefined();
+    expect(solution('292')).toBe(291);
+    expect(solution('1e13')).toBe(9997908420679);
 });
 
 test('Problem input', () => {
