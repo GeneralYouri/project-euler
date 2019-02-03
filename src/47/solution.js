@@ -1,25 +1,54 @@
-const { primeGenerator, getUniquePrimeFactors } = require('aoc-toolkit');
+const { primeGenerator, PrimeSieve } = require('aoc-toolkit');
 
-module.exports = () => {
-    const primeList = [2, 3];
-    const primes = primeGenerator();
-    let prime = primes.next().value;
-
-    let sequenceLength = 0;
-    for (let a = 2; true; a += 1) {
-        if (prime <= a) {
-            primeList.push(prime);
-            prime = primes.next().value;
+const generate = (primeFactorCounts, from, to, primesFrom, primesTo) => {
+    const primes = new PrimeSieve(primesTo);
+    primes.iterator(0, primesFrom, (prime) => {
+        for (let n = Math.trunc(from / prime + 1) * prime; n < to; n += prime) {
+            primeFactorCounts[n] = (primeFactorCounts[n] || 0) + 1;
         }
+    });
+    primes.iterator(primesFrom + 1, primesTo, (prime) => {
+        for (let n = prime; n < to; n += prime) {
+            primeFactorCounts[n] = (primeFactorCounts[n] || 0) + 1;
+        }
+    });
+};
 
-        const factorCount = getUniquePrimeFactors(a, primeList).length;
-        if (factorCount === 4) {
-            sequenceLength += 1;
-            if (sequenceLength === 4) {
-                return a - 3;
+const iterate = (primeFactorCounts, from, to, targetCount) => {
+    for (let n = from; n < to; n += 1) {
+        for (let i = targetCount - 1; i >= 0; i -= 1) {
+            if (primeFactorCounts[n + i] !== targetCount) {
+                n += i;
+                break;
+            } else if (i === 0) {
+                return n;
             }
-        } else {
-            sequenceLength = 0;
         }
     }
+    return false;
+};
+
+module.exports = (input) => {
+    const targetCount = Math.trunc(Number(input));
+    if (targetCount < 1) {
+        return undefined;
+    }
+
+    const primes = primeGenerator();
+    let limitDivisor = primes.next().value;
+    for (let i = 1; i < targetCount - 1; i += 1) {
+        limitDivisor *= primes.next().value;
+    }
+
+    const primeFactorCounts = [];
+    let [from, to] = [1, 1000];
+    let [primesFrom, primesTo] = [1, to / limitDivisor];
+    let answer;
+    do {
+        generate(primeFactorCounts, from, to, primesFrom, primesTo);
+        answer = iterate(primeFactorCounts, from, to, targetCount);
+        [from, to] = [to - targetCount + 1, to * 2];
+        [primesFrom, primesTo] = [primesTo, to / limitDivisor];
+    } while (!answer);
+    return answer;
 };
