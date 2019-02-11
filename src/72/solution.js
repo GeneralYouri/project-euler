@@ -1,15 +1,18 @@
 module.exports = (input) => {
     const limit = Math.trunc(Number(input));
+    const halfLimit = Math.trunc(limit / 2);
 
-    const phi = [...Array.from(Array(limit + 1)).keys()];
+    const nonResilientCounts = Array(halfLimit + 1).fill(0);
     let count = 0;
-    for (let d = 2; d <= limit; d += 1) {
-        if (phi[d] === d) {
-            for (let m = d; m <= limit; m += d) {
-                phi[m] = phi[m] / d * (d - 1);
-            }
+    for (let denominator = 2; denominator <= halfLimit; denominator += 1) {
+        count += denominator - 1;
+
+        const nonResilient = denominator - 1 - nonResilientCounts[denominator];
+        for (let m = 2 * denominator; m <= halfLimit; m += denominator) {
+            nonResilientCounts[m] += nonResilient;
         }
-        count += phi[d];
+        count -= Math.trunc(limit / denominator - 1) * nonResilient;
     }
+    count += (halfLimit + limit - 1) / 2 * halfLimit;
     return count;
 };

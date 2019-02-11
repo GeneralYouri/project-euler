@@ -1,4 +1,4 @@
-const { solution, defaultInput } = require('./');
+const { alternative1: solution, defaultInput } = require('./');
 
 test('Provided test cases', () => {
     expect(solution('8')).toBe(21);

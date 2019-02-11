@@ -12,3 +12,9 @@ So instead, since we need to handle all integers below our limit anyways, we can
 To do this we're using a technique similar to Prime Sieving, where every time we find an untouched value, that value is prime and we adjust all multiples of that value.
 The way we adjust those values, is to essentially remove all counts of the prime factor we're currently considering.
 By doing this for every prime, we're removing counts for every prime factor of every `d`, leaving just the amount of `n` that don't share a prime factor with `d`, and thus are resilient.
+
+Beyond the halfway point of our search space, calculations become a lot easier.
+For example, multiples of primes beyond this point exceed our limit, and thus are irrelevant.
+So we can limit ourselves to an array of just half the size of our search space.
+We can also shrink the second half of both our `for` loops down into a single statement since they're really just linear expressions at that point.
+These optimizations end up being more impactful than one might expect; for the problem input they gave me about a 4.5x runtime improvement.
