@@ -16,6 +16,18 @@ module.exports = (input) => {
 
     // let best = Number.POSITIVE_INFINITY;
 
+    const getAllowedPartners = (p) => {
+        const result = [];
+        for (let i = 0; i < primeList.length; i += 1) {
+            const q = primeList[i];
+            // if (best !== Number.POSITIVE_INFINITY && p + q >= best) {
+            //     break;
+            // }
+            result.push(isPrime(concatNumber(p, q)) && isPrime(concatNumber(q, p)));
+        }
+        return result;
+    };
+
     const extendSet = (set, setSum, minimum, limit) => {
         for (let i = minimum; i < primeList.length; i += 1) {
             const p = primeList[i];
@@ -63,15 +75,7 @@ module.exports = (input) => {
         // }
 
         while (p < limit) {
-            const allowedPartners = [];
-            for (let j = 0; j < primeList.length; j += 1) {
-                const q = primeList[j];
-                // if (best !== Number.POSITIVE_INFINITY && p + q >= best) {
-                //     break;
-                // }
-                allowedPartners.push(isPrime(concatNumber(p, q)) && isPrime(concatNumber(q, p)));
-            }
-            primePairs.push(allowedPartners);
+            primePairs.push(getAllowedPartners(p));
             primeList.push(p);
             p = primes.next().value;
         }

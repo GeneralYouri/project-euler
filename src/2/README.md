@@ -36,7 +36,7 @@ Let's first compare the two sequences:
 index         |  0|  1|  2|  3|  4|  5|  6|  7|  8|  9| 10| 11| 12
 :-------------|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:
 Fibonacci     |  0|  1|  1|  2|  3|  5|  8| 13| 21| 34| 55| 89|144
-Even Fibonacci|  0|   |   |  2|   |   |  8|  |   |  34|   |   |144
+Even Fibonacci|  0|   |   |  2|   |   |  8|   |   | 34|   |   |144
 
 Recall the basics of the fibonacci sequence: `fib(n) = fib(n-1) + fib(n-2)`.
 Due to this rule, something very interesting happens in the above table.

@@ -13,10 +13,6 @@ const getDivisorCount = (n, primes = null) => {
     let remaining = n;
 
     for (const prime of primes) {
-        if (remaining === 1 || prime * prime > n) {
-            break;
-        }
-
         if (remaining % prime === 0) {
             let hits = 0;
 
@@ -28,14 +24,17 @@ const getDivisorCount = (n, primes = null) => {
             if (hits > 0) {
                 count *= hits + 1;
             }
+
+            if (remaining === 1) {
+                return count;
+            }
+
+            if (isPrime(remaining)) {
+                return count * 2;
+            }
         }
     }
-
-    if (remaining !== 1) {
-        count *= 2;
-    }
-
-    return count;
+    return undefined;
 };
 
 module.exports = (input) => {

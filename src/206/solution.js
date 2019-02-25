@@ -10,7 +10,7 @@ const matchesMask = (n) => {
 
 module.exports = () => {
     const lower = 101010101;
-    const upper = 138902662;
+    const upper = 138902662; // Math.sqrt(1929394959697989990 / 100), basically fill the blanks with 9 while discarding the last two digits
 
     const deltas = [2, 6];
     for (let n = lower; n <= upper; n += 10) {
