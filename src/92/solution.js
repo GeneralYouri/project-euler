@@ -1,14 +1,11 @@
-const squares = [0, 1, 4, 9, 16, 25, 36, 49, 64, 81];
-
-const calcChain = (n) => {
-    let m = 0;
-    while (n > 0) {
-        const remainder = Math.floor(n / 10);
-        const digit = n - remainder * 10;
-        m += squares[digit];
-        n = remainder;
+const calcChain = (value) => {
+    let sum = 0;
+    while (value > 0) {
+        const digit = value % 10;
+        sum += digit * digit;
+        value = (value - digit) / 10;
     }
-    return m;
+    return sum;
 };
 
 module.exports = (input) => {
@@ -16,36 +13,46 @@ module.exports = (input) => {
 
     const endsAt1 = new Set([1]);
     const endsAt89 = new Set([89]);
-    const addLimit = squares[9] * Math.ceil(Math.log10(limit));
+    const digitCount = Math.log10(limit);
+    const maxValue = 9 ** 2 * digitCount;
 
     const chainMap = new Map();
-    for (let n = 1; n <= addLimit; n += 1) {
-        chainMap.set(n, calcChain(n));
+    for (let value = 1; value <= maxValue; value += 1) {
+        chainMap.set(value, calcChain(value));
     }
 
-    let count = 0;
-    for (let n = 1; n < limit; n += 1) {
+    for (let n = 1; n <= maxValue; n += 1) {
         let m = n;
         while (true) {
+            m = chainMap.get(m);
             if (endsAt1.has(m)) {
-                if (n <= addLimit) {
-                    endsAt1.add(n);
-                }
+                endsAt1.add(n);
                 break;
             } else if (endsAt89.has(m)) {
-                if (n <= addLimit) {
-                    endsAt89.add(n);
-                }
-                count += 1;
+                endsAt89.add(n);
                 break;
-            }
-
-            if (m <= addLimit) {
-                m = chainMap.get(m);
-            } else {
-                m = calcChain(m);
             }
         }
     }
-    return count;
+
+
+    let countsByValue = Array(maxValue + 1).fill(0);
+    countsByValue[0] = 1;
+
+    for (let digitsLeft = 1; digitsLeft <= digitCount; digitsLeft += 1) {
+        const newCountsByValue = Array(maxValue + 1).fill(0);
+
+        for (let targetValue = 0; targetValue <= maxValue; targetValue += 1) {
+            for (let digit = 0; digit <= 9; digit += 1) {
+                const digitValue = digit * digit;
+                if (digitValue <= targetValue) {
+                    newCountsByValue[targetValue] += countsByValue[targetValue - digitValue];
+                }
+            }
+        }
+
+        countsByValue = newCountsByValue;
+    }
+
+    return Array.from(endsAt89).reduce((count, chainValue) => count + countsByValue[chainValue], 0);
 };
