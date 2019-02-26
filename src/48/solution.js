@@ -1,5 +1,5 @@
-module.exports = (input, digits = 10) => {
-    const limit = Math.trunc(Number(input));
+module.exports = (input) => {
+    const [limit, digits] = input.split(',').map(Number);
     if (limit < 1) {
         return 0;
     }

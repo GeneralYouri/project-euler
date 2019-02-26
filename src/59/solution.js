@@ -9,9 +9,11 @@
 //     return key;
 // };
 
-module.exports = (input, keyLength = 3) => {
+module.exports = (input) => {
     // TODO: Try and find the decrypted message algorithmically
-    // const encoded = input.split(/,/g).map(Number);
+    // const stringArgs = input.split('\n,');
+    // const encoded = stringArgs[0].split(/,/g).map(Number);
+    // const keyLength = Number(stringArgs[1]);
     //
     // const keyLength = 3;
     // const limit = 2 * 26 ** keyLength;

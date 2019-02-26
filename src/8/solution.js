@@ -1,5 +1,7 @@
-module.exports = (input, digitsPerProduct = 13) => {
-    const digits = input.replace(/\n/g, '').split('').map(Number);
+module.exports = (input) => {
+    const stringArgs = input.split('\n,');
+    const digits = stringArgs[0].replace(/\n/g, '').split('').map(Number);
+    const digitsPerProduct = Number(stringArgs[1]);
     if (digitsPerProduct < 1) {
         return 0;
     }

@@ -1,5 +1,7 @@
-module.exports = (input, digitCount = 10) => {
-    const numbers = input.split(/\n/g).map(BigInt);
+module.exports = (input) => {
+    const stringArgs = input.split('\n,');
+    const numbers = stringArgs[0].split(/\n/g).map(BigInt);
+    const digitCount = Number(stringArgs[1]);
     if (digitCount < 0) {
         return undefined;
     }

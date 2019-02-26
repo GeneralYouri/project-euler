@@ -1,5 +1,7 @@
-module.exports = (input, digitCount = 10) => {
-    const [multiplier, base, power, delta] = input.match(/^(\d+)\*(\d+)\^(\d+)([-+]\d+)$/).slice(1).map(Number);
+module.exports = (input) => {
+    const stringArgs = input.split(',');
+    const [multiplier, base, power, delta] = stringArgs[0].match(/^(\d+)\*(\d+)\^(\d+)([-+]\d+)$/).slice(1).map(Number);
+    const digitCount = Number(stringArgs[1]);
     const divider = 10 ** digitCount;
 
     const powersPerRound = Math.floor(Math.log10(Number.MAX_SAFE_INTEGER / divider) / Math.log10(base));
