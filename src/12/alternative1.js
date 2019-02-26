@@ -1,7 +1,7 @@
 const { primeGenerator, getDivisorCount, triangularGenerator } = require('aoc-toolkit');
 
 module.exports = (input) => {
-    const minCount = Math.trunc(Number(input));
+    const minCount = Number(input);
     const minimum = (minCount / 2) ** 2;
     if (minCount < 0) {
         return undefined;

@@ -28,7 +28,7 @@ const chunkedAdd = (a, b) => {
 const fibonacciGenerator = createFibonacciGenerator('0', '1', chunkedAdd);
 
 module.exports = (input) => {
-    const digitCount = Math.trunc(Number(input));
+    const digitCount = Number(input);
     if (digitCount < 1) {
         return undefined;
     }

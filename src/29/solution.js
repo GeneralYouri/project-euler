@@ -1,8 +1,7 @@
 const { primeGeneratorLimit, getPrimeFactorsMap } = require('aoc-toolkit');
 
-module.exports = (boundA, boundB = boundA) => {
-    const limitA = Math.trunc(Number(boundA));
-    const limitB = Math.trunc(Number(boundB));
+module.exports = (input) => {
+    const [limitA, limitB] = input.split(',').map(Number);
     if (limitA < 2 || limitB < 2) {
         return undefined;
     }

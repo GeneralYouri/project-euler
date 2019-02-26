@@ -1,6 +1,5 @@
-module.exports = (boundA, boundB = boundA) => {
-    const limitA = BigInt(boundA);
-    const limitB = BigInt(boundB);
+module.exports = (input) => {
+    const [limitA, limitB] = input.split(',').map(Number);
     if (limitA < 2n || limitB < 2n) {
         return undefined;
     }

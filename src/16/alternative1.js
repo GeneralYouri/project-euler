@@ -1,5 +1,5 @@
 module.exports = (input) => {
-    const power = Math.trunc(Number(input));
+    const power = Number(input);
     if (power < 0) {
         return undefined;
     }

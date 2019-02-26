@@ -38,7 +38,7 @@ const getDivisorCount = (n, primes = null) => {
 };
 
 module.exports = (input) => {
-    const minCount = Math.trunc(Number(input));
+    const minCount = Number(input);
     if (minCount < 0) {
         return undefined;
     }

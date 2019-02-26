@@ -6,12 +6,12 @@ const factorial = (limit) => {
     return product;
 };
 
-module.exports = (w, h = w) => {
-    const width = BigInt(w);
-    const height = BigInt(h);
+module.exports = (input) => {
+    const [width, height] = input.split(',').map(BigInt);
     if (width < 1n || height < 1n) {
         return undefined;
     }
 
+    console.log(width, height);
     return (factorial(width + height) / factorial(width) / factorial(height)).toString();
 };

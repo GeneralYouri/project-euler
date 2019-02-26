@@ -1,6 +1,5 @@
-module.exports = (w, h = w) => {
-    const width = Math.trunc(Number(w));
-    const height = Math.trunc(Number(h));
+module.exports = (input) => {
+    const [width, height] = input.split(',').map(Number);
     if (width < 1 || height < 1) {
         return undefined;
     }

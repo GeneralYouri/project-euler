@@ -1,7 +1,7 @@
 const { primeGenerator } = require('aoc-toolkit');
 
 module.exports = (input) => {
-    const targetIndex = Math.trunc(Number(input));
+    const targetIndex = Number(input);
     if (targetIndex < 1) {
         return undefined;
     }

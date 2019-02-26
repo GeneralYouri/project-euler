@@ -14,7 +14,7 @@ const getRotations = (n) => {
 };
 
 module.exports = (input) => {
-    const limit = Math.trunc(Number(input));
+    const limit = Number(input);
     if (limit < 2) {
         return 0;
     }

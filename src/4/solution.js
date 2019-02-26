@@ -1,5 +1,5 @@
 module.exports = (input) => {
-    const digits = Math.trunc(Number(input));
+    const digits = Number(input);
     if (digits <= 1) {
         return undefined;
     }

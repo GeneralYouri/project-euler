@@ -18,7 +18,7 @@ const getDivisorSum = (n) => {
 };
 
 module.exports = (input) => {
-    const limit = Math.trunc(Number(input));
+    const limit = Number(input);
     if (limit < 1) {
         return undefined;
     }

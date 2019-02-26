@@ -1,7 +1,7 @@
 const { isPrime, primeGenerator } = require('aoc-toolkit');
 
 module.exports = (input) => {
-    let remaining = Math.trunc(Number(input));
+    let remaining = Number(input);
     if (remaining < 2) {
         return undefined;
     }

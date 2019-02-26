@@ -1,6 +1,6 @@
 // TODO: Add new solutions / Improve existing solutions
 module.exports = (input) => {
-    const limitC = Math.trunc(Number(input));
+    const limitC = Number(input);
     const limitB = Math.trunc(limitC / 2);
     const limitA = Math.trunc(limitC / 3);
 

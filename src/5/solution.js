@@ -2,7 +2,7 @@ const { primeGenerator } = require('aoc-toolkit');
 
 // Calculate the LCM for 1 .. input by determining the required prime factors
 module.exports = (input) => {
-    const limit = Math.trunc(Number(input));
+    const limit = Number(input);
     const sqrt = Math.sqrt(limit);
     const log = Math.log(limit);
     if (limit < 1) {

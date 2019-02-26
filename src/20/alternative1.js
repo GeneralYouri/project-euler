@@ -1,6 +1,6 @@
 // TODO: For this problem, applying multiple numbers per round has not yet been implemented.
 module.exports = (input) => {
-    const limit = Math.trunc(Number(input));
+    const limit = Number(input);
     if (limit < 0) {
         return undefined;
     }

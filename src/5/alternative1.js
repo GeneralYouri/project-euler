@@ -2,7 +2,7 @@ const { getPrimeFactorsMap } = require('aoc-toolkit');
 
 // Calculate the LCM for 1 .. input by combining the prime factors of every number in the range
 module.exports = (input) => {
-    const limit = Math.trunc(Number(input));
+    const limit = Number(input);
     if (limit < 1) {
         return undefined;
     }

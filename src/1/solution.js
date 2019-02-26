@@ -4,7 +4,7 @@ const sumOfMultiples = (limit, divisor) => {
 };
 
 module.exports = (input) => {
-    const limit = Math.trunc(Number(input));
+    const limit = Number(input);
 
     return sumOfMultiples(limit, 3) + sumOfMultiples(limit, 5) - sumOfMultiples(limit, 3 * 5);
 };

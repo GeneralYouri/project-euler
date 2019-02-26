@@ -1,7 +1,7 @@
 const { isPrime } = require('aoc-toolkit');
 
 module.exports = (input) => {
-    const limit = Math.trunc(Number(input));
+    const limit = Number(input);
 
     let bestCount = 0;
     let bestProduct;

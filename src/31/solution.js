@@ -1,5 +1,3 @@
-const allCoinTypes = [200, 100, 50, 20, 10, 5, 2, 1];
-
 const hasher = (remainder, coinTypes) => remainder + ';' + coinTypes;
 
 let foundUniques;
@@ -25,7 +23,9 @@ const countUniques = (remainder, coinTypes) => {
 };
 
 module.exports = (input) => {
-    const remainder = Math.trunc(Number(input));
+    const stringArgs = input.split('\n');
+    const remainder = Number(stringArgs[0]);
+    const allCoinTypes = stringArgs[1].split(',').map(Number).sort((a, b) => b - a);
     if (remainder < 0) {
         return undefined;
     }

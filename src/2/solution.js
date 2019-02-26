@@ -9,7 +9,7 @@ const getNthFibonacci = n => Math.round(Phi ** n / Math.sqrt(5));
 const fibonacciSum = n => getNthFibonacci(n + 2) - 1;
 
 module.exports = (input) => {
-    const limit = Math.trunc(Number(input));
+    const limit = Number(input);
     if (limit <= 0) {
         return 0;
     }

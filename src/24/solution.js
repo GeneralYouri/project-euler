@@ -1,15 +1,19 @@
 let factorials = [];
-const setupFactorials = () => {
+const setupFactorials = (digitCount) => {
     let current = 1;
     factorials = [current, current];
-    for (let m = 2; m <= 9; m += 1) {
+    for (let m = 2; m <= digitCount; m += 1) {
         current *= m;
         factorials.push(current);
     }
 };
 
-module.exports = (permutationN, digits = '0123456789') => {
-    setupFactorials();
+module.exports = (input) => {
+    const inputArgs = input.split(',');
+    const permutationN = Number(inputArgs[0]);
+    const digits = inputArgs[1];
+
+    setupFactorials(digits.length);
     let remainingPermutations = Math.trunc(Number(permutationN)) - 1;
     let remainingDigits = digits.slice();
     if (remainingPermutations < 0 || remainingDigits.length === 0) {

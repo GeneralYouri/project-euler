@@ -7,7 +7,7 @@ const isPandigital = (n, length = n.toString().length) => {
 };
 
 module.exports = (input) => {
-    const n = Math.trunc(Number(input));
+    const n = Number(input);
     if (n < 3) {
         return 0;
     }

@@ -3,7 +3,7 @@ const { createFibonacciGenerator } = require('aoc-toolkit');
 const fibonacciGenerator = createFibonacciGenerator(0n, 1n);
 
 module.exports = (input) => {
-    const digitCount = Math.trunc(Number(input));
+    const digitCount = Number(input);
     if (digitCount < 1) {
         return undefined;
     }
