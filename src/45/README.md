@@ -1,5 +1,7 @@
 # [Problem 45](https://projecteuler.net/problem=45): Triangular, pentagonal, and hexagonal
 
+*For this problem, the accepted input is the 1-based index of the previous matching Hexagonal number, only indices after that are considered.*
+
 An incredibly naive solution could be to iterate one number sequence, and for each number iterate another number sequence to find a match, vice verse for the third number sequence.
 But obviously this is entirely redundant, because these number sequences are by definition increasing.
 This means we can keep a sort of running total for each of our number sequences, essentially running all three of the above loops at once, instead of nested.

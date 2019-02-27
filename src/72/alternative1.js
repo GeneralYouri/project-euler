@@ -1,5 +1,5 @@
 module.exports = (input) => {
-    const limit = Math.trunc(Number(input));
+    const limit = Number(input);
 
     const phi = [...Array.from(Array(limit + 1)).keys()];
     let count = 0;

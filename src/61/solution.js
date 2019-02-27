@@ -3,7 +3,7 @@ const { createFigurateGenerator } = require('aoc-toolkit');
 const sum = numbers => numbers.reduce((acc, n) => acc + n, 0);
 
 module.exports = (input) => {
-    const maxOrder = Math.trunc(Number(input));
+    const maxOrder = Number(input);
     if (maxOrder < 3) {
         return undefined;
     }

@@ -3,7 +3,7 @@ const { primeGenerator } = require('aoc-toolkit');
 const digitsSorted = n => n.toString().split('').sort().join('');
 
 module.exports = (input) => {
-    const limit = Math.trunc(Number(input));
+    const limit = Number(input);
 
     const primeList = [];
     const primes = primeGenerator();

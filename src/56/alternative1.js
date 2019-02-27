@@ -14,7 +14,7 @@ const multiply = (digitArray, m) => {
 const digitSum = digitArray => digitArray.reduce((sum, d) => sum + d);
 
 module.exports = (input) => {
-    const limit = Math.trunc(Number(input));
+    const limit = Number(input);
 
     let best = 0;
     let minimumDigits = 0;

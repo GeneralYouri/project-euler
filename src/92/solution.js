@@ -9,7 +9,7 @@ const calcChain = (value) => {
 };
 
 module.exports = (input) => {
-    const limit = Math.trunc(Number(input));
+    const limit = Number(input);
 
     const endsAt1 = new Set([1]);
     const endsAt89 = new Set([89]);

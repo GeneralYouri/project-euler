@@ -1,7 +1,7 @@
 const digitString = n => n.toString().split('').sort().join('');
 
 module.exports = (input) => {
-    const multipleCount = Math.trunc(Number(input));
+    const multipleCount = Number(input);
 
     let limit = 1000;
     const multipleArray = Array.from(Array(multipleCount - 1)).map((_, i) => (i + 1));

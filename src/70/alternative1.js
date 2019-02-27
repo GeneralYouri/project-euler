@@ -40,7 +40,7 @@ const phi = (n) => {
 const digitsSorted = n => n.toString().split('').sort().join('');
 
 module.exports = (input) => {
-    const limit = Math.trunc(Number(input));
+    const limit = Number(input);
 
     const primes = primeGenerator();
     let prime = primes.next().value;

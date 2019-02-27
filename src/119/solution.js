@@ -1,7 +1,7 @@
 const digitSum = n => n.toString().split('').reduce((sum, digit) => sum + Number(digit), 0);
 
 module.exports = (input) => {
-    const target = Math.trunc(Number(input));
+    const target = Number(input);
 
     const matches = new Set();
 

@@ -8,7 +8,7 @@ const gcd = (a, b) => {
 };
 
 module.exports = (input) => {
-    const limit = Math.trunc(Number(input));
+    const limit = Number(input);
 
     let count = 0;
     for (let d = 4; d <= limit; d += 1) {

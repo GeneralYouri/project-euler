@@ -1,7 +1,7 @@
 const digitHash = n => n.toString().split('').sort().join('');
 
 module.exports = (input) => {
-    const targetSize = Math.trunc(Number(input));
+    const targetSize = Number(input);
     if (targetSize < 1) {
         return undefined;
     }

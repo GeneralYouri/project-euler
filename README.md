@@ -41,7 +41,8 @@ Per problem you'll find the following contents:
 - Add new solutions / Improve existing solutions for problems 9, 12, 14, 20.1, 23, 28, 33, 47, 51, 61, 70, 92, 206, 
 - Improve runtime for problems 60, 70, 92, 206, 
 - Write tests for problems 14, 23, 
-- Write readme for problems 12, 14, 23, 51, 650
+- Write readme for problems 14, 23, 51, 650
+- Add "Related problems" section in problem readme files
 
 ---
 

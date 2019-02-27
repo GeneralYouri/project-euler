@@ -1,5 +1,5 @@
 module.exports = (input) => {
-    const limit = Math.trunc(Number(input));
+    const limit = Number(input);
 
     const nonResilientCounts = Array(limit + 1).fill(0);
     let count = 0;

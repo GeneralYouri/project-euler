@@ -1,7 +1,7 @@
 const { hexagonalGenerator, isPentagonal } = require('aoc-toolkit');
 
 module.exports = (input) => {
-    const minimum = Math.trunc(Number(input));
+    const minimum = Number(input);
     if (minimum < 0) {
         return undefined;
     }

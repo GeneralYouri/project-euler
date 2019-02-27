@@ -18,7 +18,7 @@ const continuedFraction = (S) => {
 };
 
 module.exports = (input) => {
-    const limit = Math.trunc(Number(input));
+    const limit = Number(input);
 
     let count = 0;
     for (let n = 1; n <= limit; n += 1) {

@@ -9,7 +9,7 @@ const concatNumber = (a, b) => {
 };
 
 module.exports = (input) => {
-    const targetCount = Math.trunc(Number(input));
+    const targetCount = Number(input);
 
     const primeList = [];
     const primePairs = [];

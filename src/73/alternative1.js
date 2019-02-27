@@ -10,7 +10,7 @@ const fractions = (min, max, limit) => {
 };
 
 module.exports = (input) => {
-    const limit = Math.trunc(Number(input));
+    const limit = Number(input);
 
     return fractions(3, 2, limit);
 };

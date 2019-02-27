@@ -21,7 +21,7 @@ const phi = (n) => {
 };
 
 module.exports = (input) => {
-    const limit = Math.trunc(Number(input));
+    const limit = Number(input);
 
     const primes = primeGenerator();
     let prime = primes.next().value;

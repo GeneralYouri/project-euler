@@ -47,7 +47,7 @@ const getFamilies = (p) => {
 };
 
 module.exports = (input) => {
-    const familyOrder = Math.trunc(Number(input));
+    const familyOrder = Number(input);
 
     const buckets = new Map();
     const primes = primeGenerator();

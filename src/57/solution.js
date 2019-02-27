@@ -1,7 +1,7 @@
 const log10Floor = n => Math.floor(Math.log10(n));
 
 module.exports = (input) => {
-    const limit = Math.trunc(Number(input));
+    const limit = Number(input);
 
     let count = 0;
     let numerator = 1;

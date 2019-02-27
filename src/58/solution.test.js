@@ -1,7 +1,7 @@
 const { solution, defaultInput } = require('./');
 
 test('Provided test cases', () => {
-    expect(solution('0.6')).toBe(5);
+    expect(solution('60')).toBe(5);
 });
 
 test('Custom test cases', () => {

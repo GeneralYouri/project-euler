@@ -32,7 +32,7 @@ const take = (n, iterable) => {
 };
 
 module.exports = (input) => {
-    const limit = Math.trunc(Number(input));
+    const limit = Number(input);
 
     primeList = take(10, primeGenerator());
 

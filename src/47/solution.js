@@ -29,7 +29,7 @@ const iterate = (primeFactorCounts, from, to, targetCount) => {
 };
 
 module.exports = (input) => {
-    const targetCount = Math.trunc(Number(input));
+    const targetCount = Number(input);
     if (targetCount < 1) {
         return undefined;
     }

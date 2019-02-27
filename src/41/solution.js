@@ -35,7 +35,7 @@ const iterate = (digits) => {
 };
 
 module.exports = (input) => {
-    const limit = Math.trunc(Number(input));
+    const limit = Number(input);
 
     if (limit >= 7) {
         const largest7 = iterate([1, 2, 3, 4, 5, 6, 7]);
@@ -43,7 +43,7 @@ module.exports = (input) => {
             return largest7;
         }
     }
-    if (limit >= 7) {
+    if (limit >= 4) {
         return iterate([1, 2, 3, 4]);
     }
     return 0;
